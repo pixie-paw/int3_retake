@@ -1,0 +1,61 @@
+---
+// src/components/nav/SoundToggle.astro
+import soundOnUrl from "../../assets/nav/sound-on.svg?url";
+import soundOffUrl from "../../assets/nav/sound-off.svg?url";
+---
+
+<button
+    type="button"
+    class="sound-toggle"
+    data-playing="false"
+    aria-pressed="false"
+    aria-label="Play video sound"
+>
+    <img
+        src={soundOnUrl}
+        alt=""
+        class="sound-toggle__icon sound-toggle__icon--on"
+        width="28"
+        height="28"
+    />
+    <img
+        src={soundOffUrl}
+        alt=""
+        class="sound-toggle__icon sound-toggle__icon--off"
+        width="24"
+        height="24"
+    />
+</button>
+
+<style>
+    .sound-toggle__icon--on {
+        display: none;
+    }
+    .sound-toggle[data-playing="true"] .sound-toggle__icon--on {
+        display: block;
+    }
+    .sound-toggle[data-playing="true"] .sound-toggle__icon--off {
+        display: none;
+    }
+</style>
+
+<script>
+    const soundToggles =
+        document.querySelectorAll<HTMLButtonElement>(".sound-toggle");
+
+    soundToggles.forEach((soundToggle) => {
+        soundToggle.addEventListener("click", () => {
+            const isPlaying = soundToggle.dataset.playing === "true";
+            const nextPlaying = !isPlaying;
+
+            soundToggle.dataset.playing = String(nextPlaying);
+            soundToggle.setAttribute("aria-pressed", String(nextPlaying));
+            soundToggle.setAttribute(
+                "aria-label",
+                nextPlaying ? "Mute video sound" : "Play video sound",
+            );
+
+            // TODO: dispatch a custom event here once the YouTube section exists
+        });
+    });
+</script>

@@ -1,0 +1,120 @@
+---
+// src/components/nav/MobileMenuToggle.astro
+import burgerMenuUrl from "../../assets/nav/burger_menu.svg?url";
+import burgerClosedUrl from "../../assets/nav/burger_closed.svg?url";
+---
+
+<button
+    type="button"
+    class="mobile-menu-toggle__btn"
+    data-open="false"
+    aria-expanded="false"
+    aria-controls="mobile-menu-dialog"
+    aria-label="Open menu"
+>
+    <img
+        src={burgerMenuUrl}
+        alt=""
+        class="mobile-menu-toggle__icon mobile-menu-toggle__icon--open"
+        width="24"
+        height="24"
+    />
+    <img
+        src={burgerClosedUrl}
+        alt=""
+        class="mobile-menu-toggle__icon mobile-menu-toggle__icon--close"
+        width="24"
+        height="24"
+    />
+</button>
+
+<dialog
+    id="mobile-menu-dialog"
+    class="mobile-menu-toggle__dialog"
+    aria-label="Site menu"
+>
+    <div class="mobile-menu-toggle__content">
+        <slot />
+    </div>
+</dialog>
+
+<style>
+    .mobile-menu-toggle__icon--close {
+        display: none;
+    }
+    .mobile-menu-toggle__btn[data-open="true"] .mobile-menu-toggle__icon--open {
+        display: none;
+    }
+    .mobile-menu-toggle__btn[data-open="true"]
+        .mobile-menu-toggle__icon--close {
+        display: block;
+    }
+
+    .mobile-menu-toggle__dialog {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: calc(100% - var(--nav-height));
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: var(--color-pink, pink);
+    }
+
+    .mobile-menu-toggle__dialog::backdrop {
+        background: transparent;
+    }
+
+    .mobile-menu-toggle__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .mobile-menu-toggle__btn {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    const menuBtn = document.querySelector<HTMLButtonElement>(
+        ".mobile-menu-toggle__btn",
+    );
+    const menuDialog = document.querySelector<HTMLDialogElement>(
+        ".mobile-menu-toggle__dialog",
+    );
+
+    menuBtn?.addEventListener("click", () => {
+        const isOpen = menuBtn.dataset.open === "true";
+        const nextOpen = !isOpen;
+
+        menuBtn.dataset.open = String(nextOpen);
+        menuBtn.setAttribute("aria-expanded", String(nextOpen));
+        menuBtn.setAttribute(
+            "aria-label",
+            nextOpen ? "Close menu" : "Open menu",
+        );
+
+        nextOpen ? menuDialog?.show() : menuDialog?.close();
+    });
+
+    menuDialog?.addEventListener("close", () => {
+        menuBtn?.setAttribute("data-open", "false");
+        menuBtn?.setAttribute("aria-expanded", "false");
+        menuBtn?.setAttribute("aria-label", "Open menu");
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuDialog?.open) {
+            menuDialog.close();
+        }
+    });
+</script>
