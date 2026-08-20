@@ -1,0 +1,101 @@
+---
+import Logo from "./Logo.astro";
+import SoundToggle from "./SoundToggle.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import MobileMenuToggle from "./MobileMenuToggle.astro";
+---
+
+<header class="nav">
+    <Logo />
+
+    <nav class="nav__desktop" aria-label="Main">
+        <SoundToggle />
+        <LanguageSwitcher />
+        <a href="#" class="nav__link">All Collection Stories</a>
+        <a href="#" class="nav__link nav__link--filled">Visit Museum</a>
+    </nav>
+
+    <MobileMenuToggle>
+        <div class="mobile-menu-toggle__row"><SoundToggle /></div>
+        <div class="mobile-menu-toggle__row"><LanguageSwitcher /></div>
+        <div class="mobile-menu-toggle__row">
+            <a href="#" class="nav__link">All Collection Stories</a>
+        </div>
+        <div class="mobile-menu-toggle__row mobile-menu-toggle__row--cta">
+            <a href="#" class="nav__link nav__link--filled">Visit Museum</a>
+        </div>
+    </MobileMenuToggle>
+</header>
+
+<style>
+    .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        height: var(--nav-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        padding-inline: 1rem;
+    }
+
+    .nav__desktop {
+        display: none;
+    }
+
+    .mobile-menu-toggle__row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid var(--color-text-secondary);
+        padding: 1.5rem 1rem;
+    }
+
+    .mobile-menu-toggle__row--cta {
+        border-bottom: none;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        margin-top: auto;
+    }
+
+    .nav__link {
+        text-decoration: none;
+        color: inherit;
+        font-weight: var(--weight-regular);
+    }
+
+    .nav__link--filled {
+        background: var(--color-text-secondary);
+        color: var(--color-bg);
+        padding: 0.75rem 1.5rem;
+        font-weight: var(--weight-medium);
+    }
+
+    @media (min-width: 768px) {
+        .nav__desktop {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Switch LanguageSwitcher into dropdown mode on desktop */
+        .nav__desktop .language-switcher__toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav__desktop .language-switcher__list {
+            display: none;
+            position: absolute;
+            flex-direction: column;
+            background: #fff;
+            border: 1px solid var(--color-lines, #000);
+            padding: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .nav__desktop .language-switcher__list.language-switcher__list--open {
+            display: flex;
+        }
+    }
+</style>
