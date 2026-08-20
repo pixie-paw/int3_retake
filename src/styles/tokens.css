@@ -1,0 +1,73 @@
+:root {
+    /* ------------------------------ */
+    /*             FONTS              */
+    /* ------------------------------ */
+    --font-family-sans: "akzidenz-grotesk-next-pro", sans-serif;
+    --font-family-condensed: "akzidenz-grotesk-next-conden", sans-serif;
+    --font-family-serif: "playfair-display", serif;
+    --font-family-punktype: "Punktype", serif;
+    --font-family-bestieseventy: "BestieSeventy", sans-serif;
+    --font-family-bastligaone: "BastligaOne", sans-serif;
+
+    /* ------------------------------ */
+    /*            FONT SIZES          */
+    /* ------------------------------ */
+    /* 20px at small & 32px at big (chapter titles) */
+    --step-1: clamp(1.25rem, 1rem + 1.1111cqi, 2rem);
+    /* 16px at small & 18px at big (body) */
+    --step-0: clamp(1rem, 0.9583rem + 0.1852cqi, 1.125rem);
+    /* 16px at small & 20px at big (top body paper) */
+    --step--1: clamp(1rem, 0.9167rem + 0.3704cqi, 1.25rem);
+    /* 12px at small & 20px at big (chapter nav) */
+    --step--2: clamp(0.75rem, 0.5833rem + 0.7407cqi, 1.25rem);
+
+    /* ------------------------------ */
+    /*           FONT WEIGHTS         */
+    /* ------------------------------ */
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-bold: 700;
+    --weight-black: 900;
+
+
+    /* ------------------------------ */
+    /*            SPACES              */
+    /* ------------------------------ */
+
+
+    /* ------------------------------ */
+    /*            COLORS              */
+    /* ------------------------------ */
+    --color-bg: oklch(1 0 0);
+    --color-text-main: oklch(0.3715 0 0);
+    --color-text-secondary: oklch(0.2435 0 0);
+    --color-text-accent: oklch(0.5349 0.005 17.31);
+    --color-text-accent-secondary: oklch(0.692 0.0035 17.24);
+    --color-pink: oklch(0.9464 0.0323 348.09);
+    --color-green: oklch(0.7287 0.057 162.89);
+    --color-purple: oklch(0.6382 0.1133 340.14);
+}
+
+@font-face {
+    font-family: "Punktype";
+    src: url("/int3_retake/fonts/Punktype.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BestieSeventy";
+    src: url("/int3_retake/fonts/BestieSeventy.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BastligaOne";
+    src: url("/int3_retake/fonts/BastligaOne.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
