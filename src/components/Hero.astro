@@ -1,0 +1,175 @@
+---
+import { getImage } from "astro:assets";
+import heroMobileSrc from "../assets/hero/marina_mobile_hero.png";
+import heroDesktopSrc from "../assets/hero/marina_desktop_hero.png";
+import laceLeftSrc from "../assets/hero/lace-left.png";
+import laceCornerSrc from "../assets/hero/lace-corner.png";
+
+const heroMobile = await getImage({
+    src: heroMobileSrc,
+    format: "webp",
+    width: 750,
+});
+const heroDesktop = await getImage({
+    src: heroDesktopSrc,
+    format: "webp",
+    width: 1600,
+});
+const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
+const laceCorner = await getImage({ src: laceCornerSrc, format: "webp" });
+---
+
+<section class="hero-section">
+    <div class="hero">
+        <picture class="hero__picture">
+            <source media="(min-width: 768px)" srcset={heroDesktop.src} />
+            <img
+                src={heroMobile.src}
+                alt=""
+                aria-hidden="true"
+                class="hero__image"
+                width={heroMobile.attributes.width}
+                height={heroMobile.attributes.height}
+            />
+        </picture>
+
+        <h1 class="visually-hidden">Marina Yee</h1>
+        <p class="visually-hidden">
+            A woman, fashion designer, and artist in one
+        </p>
+    </div>
+
+    <img
+        src={laceLeft.src}
+        alt=""
+        aria-hidden="true"
+        class="hero__lace hero__lace--left"
+    />
+    <img
+        src={laceCorner.src}
+        alt=""
+        aria-hidden="true"
+        class="hero__lace hero__lace--corner"
+    />
+
+    <div class="hero__scroll-indicator">
+        <span>Scroll to Explore</span>
+        <svg
+            class="hero__scroll-arrow"
+            width="59"
+            height="19"
+            viewBox="0 0 59 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+        >
+            <path
+                d="M0.605469 1.09375L29.6055 17.0938L58.1055 1.09375"
+                stroke="currentColor"
+                stroke-width="2.5"></path>
+        </svg>
+    </div>
+</section>
+
+<style>
+    .hero__lace {
+        display: none;
+    }
+
+    .hero-section {
+        min-height: calc(100dvh - var(--nav-height));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .hero {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 2643 / 2920; /* matches mobile export */
+    }
+
+    span {
+        font-family: var(--font-family-serif);
+        font-size: var(--step-2);
+        letter-spacing: 0.1em;
+        color: var(--color-text-secondary);
+    }
+
+    @media (min-width: 768px) {
+        .hero {
+            aspect-ratio: 3737 / 2404; /* matches desktop export */
+        }
+
+        .hero__lace {
+            display: block;
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero__lace--left {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            object-position: left top;
+        }
+
+        .hero__lace--corner {
+            right: 0;
+            bottom: 0;
+            width: auto;
+            height: auto;
+        }
+
+        .hero__scroll-indicator {
+            position: absolute;
+            left: 15%;
+            bottom: 17%;
+            margin-top: 0;
+            margin-bottom: 4rem;
+            align-items: flex-start; /* left-aligned text, matching the tape's alignment */
+        }
+    }
+
+    .hero__picture,
+    .hero__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        margin-top: 1rem;
+    }
+
+    .hero__scroll-indicator {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding-bottom: 2rem;
+        color: var(--color-text-secondary);
+    }
+
+    .hero__scroll-arrow {
+        width: 40px;
+        height: auto;
+        animation: bounce 1.6s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(6px);
+        }
+    }
+</style>
