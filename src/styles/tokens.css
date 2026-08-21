@@ -22,8 +22,8 @@
     --step-0: clamp(1rem, 0.9583rem + 0.1852cqi, 1.125rem);
     /* 16px at small & 20px at big (top body paper) */
     --step--1: clamp(1rem, 0.9167rem + 0.3704cqi, 1.25rem);
-    /* 12px at small & 20px at big (chapter nav) */
-    --step--2: clamp(0.75rem, 0.5833rem + 0.7407cqi, 1.25rem);
+    /* 14px at small & 20px at big (chapter nav) */
+    --step--2: clamp(0.875rem, 0.75rem + 0.5556cqi, 1.25rem);
 
     /* ------------------------------ */
     /*           FONT WEIGHTS         */
