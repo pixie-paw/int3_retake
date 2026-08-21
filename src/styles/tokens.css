@@ -14,6 +14,8 @@
     /* ------------------------------ */
     /* 20px at small & 32px at big (chapter titles) */
     --step-1: clamp(1.25rem, 1rem + 1.1111cqi, 2rem);
+    /* 18px at small & 22px at big (chapter titles) */
+    --step-2: clamp(1.125rem, 1.0417rem + 0.3704cqi, 1.375rem);
     /* 16px at small & 18px at big (body) */
     --step-0: clamp(1rem, 0.9583rem + 0.1852cqi, 1.125rem);
     /* 16px at small & 20px at big (top body paper) */
