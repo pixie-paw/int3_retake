@@ -1,0 +1,102 @@
+---
+interface Props {
+    videoId: string;
+    title: string;
+}
+
+const { videoId, title } = Astro.props;
+const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+---
+
+<div class="youtube-facade" data-video-id={videoId}>
+    <button
+        type="button"
+        class="youtube-facade__play-btn"
+        aria-label={`Play video: ${title}`}
+    >
+        <img
+            src={thumbnailUrl}
+            alt=""
+            class="youtube-facade__thumbnail"
+            loading="lazy"
+        />
+        <span class="youtube-facade__play-icon" aria-hidden="true">▶</span>
+    </button>
+</div>
+
+<style>
+    .youtube-facade {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .youtube-facade__play-btn {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        background: none;
+    }
+
+    .youtube-facade__thumbnail {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .youtube-facade__play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.75);
+        color: #fff;
+        border-radius: 50%;
+        font-size: 1.5rem;
+    }
+</style>
+
+<script>
+    function init() {
+        const $facades =
+            document.querySelectorAll<HTMLDivElement>(".youtube-facade");
+
+        $facades.forEach(($facade) => {
+            const $playBtn = $facade.querySelector<HTMLButtonElement>(
+                ".youtube-facade__play-btn",
+            );
+            const videoId = $facade.dataset.videoId;
+
+            $playBtn?.addEventListener("click", () => {
+                const $iframe = document.createElement("iframe");
+                $iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+                $iframe.title = "YouTube video player";
+                $iframe.setAttribute("frameborder", "0");
+                $iframe.setAttribute(
+                    "allow",
+                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                );
+                $iframe.setAttribute("allowfullscreen", "true");
+                $iframe.style.width = "100%";
+                $iframe.style.height = "100%";
+                $iframe.style.position = "absolute";
+                $iframe.style.inset = "0";
+                $iframe.style.border = "none";
+
+                $facade.innerHTML = "";
+                $facade.appendChild($iframe);
+            });
+        });
+    }
+
+    init();
+</script>
