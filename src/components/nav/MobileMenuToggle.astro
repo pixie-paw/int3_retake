@@ -137,13 +137,20 @@
             nextOpen ? "Close menu" : "Open menu",
         );
 
-        nextOpen ? menuDialog?.show() : menuDialog?.close();
+        if (nextOpen) {
+            menuDialog?.show();
+            document.body.classList.add("no-scroll");
+        } else {
+            menuDialog?.close();
+            document.body.classList.remove("no-scroll");
+        }
     });
 
     menuDialog?.addEventListener("close", () => {
         menuBtn?.setAttribute("data-open", "false");
         menuBtn?.setAttribute("aria-expanded", "false");
         menuBtn?.setAttribute("aria-label", "Open menu");
+        document.body.classList.remove("no-scroll");
     });
 
     document.addEventListener("keydown", (event) => {
