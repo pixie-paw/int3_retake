@@ -1,7 +1,226 @@
 ---
-// src/components/story/IntroContent.astro
+import { getImage } from "astro:assets";
+import YouTubeFacade from "./YouTubeFacade.astro";
+import introTitleUrl from "../../assets/intro/intro_title.svg?url";
+import paper01Src from "../../assets/intro/paper_01.png";
+import paper02Src from "../../assets/intro/paper_02.png";
+import flowerSrc from "../../assets/intro/pink_flower.png";
+
+const paper01 = await getImage({ src: paper01Src, format: "webp" });
+const paper02 = await getImage({ src: paper02Src, format: "webp" });
+const flower = await getImage({ src: flowerSrc, format: "webp" });
 ---
 
-<section class="chapter-placeholder">
-    <h2>Intro content goes here</h2>
+<section class="intro">
+    <img src={flower.src} alt="" aria-hidden="true" class="intro__flower" />
+
+    <div class="intro__content">
+        <p class="intro__eyebrow">Intro</p>
+
+        <div class="intro__title-wrap">
+            <img
+                src={introTitleUrl}
+                alt=""
+                aria-hidden="true"
+                class="intro__title-img"
+            />
+            <h2 class="visually-hidden">Who was SHE?</h2>
+        </div>
+
+        <div class="intro__text-block">
+            <div
+                class="intro__body"
+                style={`background-image: url(${paper01.src})`}
+            >
+                <p class="intro__body-text">
+                    Marina Yee was one of the members of the fashion group
+                    called the Antwerp Six. She was often described as the most
+                    "elusive" member of the group and is probably the least
+                    recognized member.
+                </p>
+                <p class="intro__body-text">
+                    She was a sensitive and deeply creative soul, she spent much
+                    of her life questioning where she belonged and whether she
+                    saw herself as a fashion designer, an artist, or something
+                    in between. Yet behind this insecurity, there was someone
+                    with a strong visual identity, whose style, knowledge and
+                    creativity inspired many around her.
+                </p>
+                <p class="intro__body-text">
+                    Despite her quieter presence in fashion history, Marina was
+                    one of the most important pioneering fashion designers who
+                    put the Belgian fashion scene of the 1980s on the
+                    international map.
+                </p>
+            </div>
+
+            <p
+                class="intro__note"
+                style={`background-image: url(${paper02.src})`}
+            >
+                If you want to know more about Marina, listen to her story in
+                this beautiful interview by Galerie Sofie Van de Velde.
+            </p>
+
+            <svg
+                class="intro__note-arrow"
+                width="175"
+                height="135"
+                viewBox="0 0 175 135"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+            >
+                <path
+                    d="M1.19919 10.1658L-0.00148165 10.5135L0.693885 12.9149L1.89456 12.5672L1.54688 11.3665L1.19919 10.1658ZM167.047 134.367L174.036 121.738L159.605 121.999L167.047 134.367ZM1.54688 11.3665L1.89456 12.5672C63.6705 -5.32153 103.716 2.00721 128.707 23.6893C153.76 45.425 164.069 81.8991 165.594 123.175L166.843 123.129L168.093 123.083C166.559 81.5753 156.19 44.2231 130.345 21.8009C104.439 -0.674962 63.3651 -7.83578 1.19919 10.1658L1.54688 11.3665Z"
+                    fill="currentColor"></path>
+            </svg>
+        </div>
+    </div>
+
+    <div class="intro__video-block">
+        <YouTubeFacade
+            videoId="2c9KXTkem5w"
+            title="Marina Yee | Gallery Sofie Van de Velde"
+        />
+    </div>
+
+    <style>
+        .intro {
+            position: relative;
+            padding: 2rem 1.5rem;
+        }
+
+        .intro__flower {
+            display: none;
+        }
+
+        .intro__eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: var(--font-family-serif);
+            margin-bottom: 0.2rem;
+            font-size: var(--step--2);
+            font-weight: var(--weight-bold);
+            color: var(--color-text-main, black);
+        }
+
+        .intro__title-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-bottom: -1.5rem;
+        }
+
+        .intro__body-text {
+            font-size: var(--step-0);
+            padding-right: 2rem;
+            padding-left: 2rem;
+            color: var(--color-text-secondary, black);
+        }
+
+        .intro__text-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .intro__body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 0;
+            text-align: justify;
+            z-index: -1;
+        }
+
+        .intro__note {
+            font-family: var(--font-family-bestieseventy);
+            color: var(--color-text-main, black);
+        }
+
+        .intro__note-arrow {
+            display: none;
+        }
+
+        .intro__video-block {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+        }
+
+        @media (min-width: 768px) {
+            .intro {
+                position: relative;
+                padding: 4rem 3rem;
+            }
+
+            .intro__flower {
+                display: block;
+                position: absolute;
+                top: 8rem;
+                right: 8rem;
+                width: 320px;
+                height: auto;
+                object-fit: contain;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .intro__content {
+                display: grid;
+                grid-template-columns: 3fr 1fr;
+                margin-top: 5rem;
+            }
+
+            .intro__eyebrow,
+            .intro__title-wrap,
+            .intro__text-block {
+                grid-column: 1;
+            }
+
+            .intro__title-img {
+                max-width: 770px;
+            }
+
+            .intro__body {
+                max-width: 684.79px;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                padding: 5rem;
+                z-index: -1;
+                margin-top: -3rem;
+                margin-left: 6rem;
+            }
+
+            .intro__note {
+                max-width: 458.13px;
+                margin-inline: auto;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                padding: 2rem 2.5rem;
+                margin-left: -1rem;
+                margin-top: -2rem;
+                letter-spacing: 0.08em;
+                font-size: var(--step--1);
+            }
+
+            .intro__note-arrow {
+                display: block;
+                width: 170px;
+                height: auto;
+                margin-left: -3rem;
+                margin-right: 4rem;
+                margin-top: -5rem;
+                align-self: center;
+                color: var(--color-text-main, black);
+            }
+
+            .intro__video-block {
+                max-width: 800px;
+                margin-inline: auto;
+                margin-top: 3rem;
+            }
+        }
+    </style>
 </section>
