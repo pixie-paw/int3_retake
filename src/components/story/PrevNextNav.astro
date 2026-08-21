@@ -1,0 +1,52 @@
+---
+// src/components/story/PrevNextNav.astro
+import { chapters } from "../../data/chapters";
+
+const currentPath = Astro.url.pathname;
+const currentIndex = chapters.findIndex((c) => c.href === currentPath);
+
+const prevChapter = currentIndex > 0 ? chapters[currentIndex - 1] : null;
+const nextChapter =
+    currentIndex < chapters.length - 1 ? chapters[currentIndex + 1] : null;
+---
+
+<div class="prev-next-nav">
+    {
+        prevChapter ? (
+            <a
+                href={`${prevChapter.href}#chapter-nav`}
+                class="prev-next-nav__link prev-next-nav__link--prev"
+            >
+                ← Prev chapter
+            </a>
+        ) : (
+            <span />
+        )
+    }
+    {
+        nextChapter && (
+            <a
+                href={`${nextChapter.href}#chapter-nav`}
+                class="prev-next-nav__link prev-next-nav__link--next"
+            >
+                Next chapter →
+            </a>
+        )
+    }
+</div>
+
+<style>
+    .prev-next-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 1rem;
+    }
+
+    .prev-next-nav__link {
+        border: 1px solid var(--color-lines, #000);
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        color: inherit;
+    }
+</style>

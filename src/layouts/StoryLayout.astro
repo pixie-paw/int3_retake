@@ -1,0 +1,21 @@
+---
+// src/layouts/StoryLayout.astro
+import Layout from "./Layout.astro";
+import Hero from "../components/Hero.astro";
+import ChapterNav from "../components/story/ChapterNav.astro";
+import PrevNextNav from "../components/story/PrevNextNav.astro";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+    <Hero />
+    <ChapterNav />
+    <slot />
+    <PrevNextNav />
+</Layout>
