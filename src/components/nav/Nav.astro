@@ -5,7 +5,7 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
 import MobileMenuToggle from "./MobileMenuToggle.astro";
 ---
 
-<header class="nav">
+<header class="nav" transition:name="site-nav" transition:persist>
     <Logo />
 
     <nav class="nav__desktop" aria-label="Main">
