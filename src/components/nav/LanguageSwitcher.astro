@@ -156,28 +156,37 @@
 </style>
 
 <script>
-    const languageSwitchers =
-        document.querySelectorAll<HTMLDivElement>(".language-switcher");
+    function init() {
+        const $languageSwitchers =
+            document.querySelectorAll<HTMLDivElement>(".language-switcher");
 
-    languageSwitchers.forEach((languageSwitcher) => {
-        const languageToggle =
-            languageSwitcher.querySelector<HTMLButtonElement>(
-                ".language-switcher__toggle",
-            );
-        const languageList = languageSwitcher.querySelector<HTMLUListElement>(
-            ".language-switcher__list",
-        );
+        $languageSwitchers.forEach(($languageSwitcher) => {
+            const $languageToggle =
+                $languageSwitcher.querySelector<HTMLButtonElement>(
+                    ".language-switcher__toggle",
+                );
+            const $languageList =
+                $languageSwitcher.querySelector<HTMLUListElement>(
+                    ".language-switcher__list",
+                );
 
-        languageToggle?.addEventListener("click", () => {
-            const isExpanded =
-                languageToggle.getAttribute("aria-expanded") === "true";
-            const nextExpanded = !isExpanded;
+            $languageToggle?.addEventListener("click", () => {
+                const isExpanded =
+                    $languageToggle.getAttribute("aria-expanded") === "true";
+                const nextExpanded = !isExpanded;
 
-            languageToggle.setAttribute("aria-expanded", String(nextExpanded));
-            languageList?.classList.toggle(
-                "language-switcher__list--open",
-                nextExpanded,
-            );
+                $languageToggle.setAttribute(
+                    "aria-expanded",
+                    String(nextExpanded),
+                );
+                $languageList?.classList.toggle(
+                    "language-switcher__list--open",
+                    nextExpanded,
+                );
+            });
         });
-    });
+    }
+
+    init();
+    document.addEventListener("astro:page-load", init);
 </script>

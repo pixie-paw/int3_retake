@@ -119,43 +119,48 @@
 </style>
 
 <script>
-    const menuBtn = document.querySelector<HTMLButtonElement>(
-        ".mobile-menu-toggle__btn",
-    );
-    const menuDialog = document.querySelector<HTMLDialogElement>(
-        ".mobile-menu-toggle__dialog",
-    );
-
-    menuBtn?.addEventListener("click", () => {
-        const isOpen = menuBtn.dataset.open === "true";
-        const nextOpen = !isOpen;
-
-        menuBtn.dataset.open = String(nextOpen);
-        menuBtn.setAttribute("aria-expanded", String(nextOpen));
-        menuBtn.setAttribute(
-            "aria-label",
-            nextOpen ? "Close menu" : "Open menu",
+    function init() {
+        const $menuBtn = document.querySelector<HTMLButtonElement>(
+            ".mobile-menu-toggle__btn",
+        );
+        const $menuDialog = document.querySelector<HTMLDialogElement>(
+            ".mobile-menu-toggle__dialog",
         );
 
-        if (nextOpen) {
-            menuDialog?.show();
-            document.body.classList.add("no-scroll");
-        } else {
-            menuDialog?.close();
+        $menuBtn?.addEventListener("click", () => {
+            const isOpen = $menuBtn.dataset.open === "true";
+            const nextOpen = !isOpen;
+
+            $menuBtn.dataset.open = String(nextOpen);
+            $menuBtn.setAttribute("aria-expanded", String(nextOpen));
+            $menuBtn.setAttribute(
+                "aria-label",
+                nextOpen ? "Close menu" : "Open menu",
+            );
+
+            if (nextOpen) {
+                $menuDialog?.show();
+                document.body.classList.add("no-scroll");
+            } else {
+                $menuDialog?.close();
+                document.body.classList.remove("no-scroll");
+            }
+        });
+
+        $menuDialog?.addEventListener("close", () => {
+            $menuBtn?.setAttribute("data-open", "false");
+            $menuBtn?.setAttribute("aria-expanded", "false");
+            $menuBtn?.setAttribute("aria-label", "Open menu");
             document.body.classList.remove("no-scroll");
-        }
-    });
+        });
 
-    menuDialog?.addEventListener("close", () => {
-        menuBtn?.setAttribute("data-open", "false");
-        menuBtn?.setAttribute("aria-expanded", "false");
-        menuBtn?.setAttribute("aria-label", "Open menu");
-        document.body.classList.remove("no-scroll");
-    });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && $menuDialog?.open) {
+                $menuDialog.close();
+            }
+        });
+    }
 
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && menuDialog?.open) {
-            menuDialog.close();
-        }
-    });
+    init();
+    document.addEventListener("astro:page-load", init);
 </script>

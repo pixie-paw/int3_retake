@@ -73,22 +73,25 @@
 </style>
 
 <script>
-    const soundToggles =
-        document.querySelectorAll<HTMLButtonElement>(".sound-toggle");
+    function init() {
+        const $soundToggles =
+            document.querySelectorAll<HTMLButtonElement>(".sound-toggle");
 
-    soundToggles.forEach((soundToggle) => {
-        soundToggle.addEventListener("click", () => {
-            const isPlaying = soundToggle.dataset.playing === "true";
-            const nextPlaying = !isPlaying;
+        $soundToggles.forEach(($soundToggle) => {
+            $soundToggle.addEventListener("click", () => {
+                const isPlaying = $soundToggle.dataset.playing === "true";
+                const nextPlaying = !isPlaying;
 
-            soundToggle.dataset.playing = String(nextPlaying);
-            soundToggle.setAttribute("aria-pressed", String(nextPlaying));
-            soundToggle.setAttribute(
-                "aria-label",
-                nextPlaying ? "Mute video sound" : "Play video sound",
-            );
-
-            // TODO: dispatch a custom event here once the YouTube section exists
+                $soundToggle.dataset.playing = String(nextPlaying);
+                $soundToggle.setAttribute("aria-pressed", String(nextPlaying));
+                $soundToggle.setAttribute(
+                    "aria-label",
+                    nextPlaying ? "Mute video sound" : "Play video sound",
+                );
+            });
         });
-    });
+    }
+
+    init();
+    document.addEventListener("astro:page-load", init);
 </script>
