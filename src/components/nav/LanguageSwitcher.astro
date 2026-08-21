@@ -9,7 +9,20 @@
         aria-expanded="false"
         aria-haspopup="listbox"
     >
-        EN <span class="language-switcher__caret" aria-hidden="true">⌄</span>
+        EN <svg
+            class="language-switcher__caret"
+            width="17"
+            height="8"
+            viewBox="0 0 17 8"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+        >
+            <path
+                d="M0.589844 0.806641L8.08984 6.30664L15.5898 0.806641"
+                stroke="currentColor"
+                stroke-width="2"></path>
+        </svg>
     </button>
     <ul class="language-switcher__list" role="listbox">
         <li
@@ -50,7 +63,15 @@
 
     /* Mobile default: no dropdown toggle, list always visible in a row */
     .language-switcher__toggle {
+        font-family: var(--font-family-sans);
+        font-weight: var(--weight-regular);
+        font-size: var(--step-3);
         display: none;
+    }
+
+    .language-switcher__caret {
+        display: inline-block;
+        color: var(--color-text-secondary, black);
     }
 
     .language-switcher__list {
@@ -66,7 +87,9 @@
     }
 
     .language-switcher__option-btn {
+        font-family: var(--font-family-sans);
         font-weight: var(--weight-regular);
+        font-size: var(--step-3);
         cursor: pointer;
         color: inherit;
         background: none;
@@ -93,8 +116,8 @@
             flex-direction: column;
             gap: 0;
             min-width: 100%;
-            background: #fff;
-            border: 1px solid var(--color-lines, #000);
+            background: var(--color-bg);
+            border: 2.5px solid var(--color-text-secondary, black);
             padding: 0;
             margin-top: 0.75rem;
             z-index: 30;
@@ -105,7 +128,7 @@
         }
 
         .language-switcher__option {
-            border-bottom: 1px solid var(--color-lines, #000);
+            border-bottom: 2.5px solid var(--color-text-secondary, black);
         }
 
         .language-switcher__option:last-child {
@@ -117,6 +140,11 @@
             width: 100%;
             padding: 0.5rem 1rem;
             text-align: left;
+            transition: background-color 0.2s ease;
+        }
+
+        .language-switcher__option-btn:hover {
+            background-color: var(--color-pink, pink);
         }
     }
 </style>
