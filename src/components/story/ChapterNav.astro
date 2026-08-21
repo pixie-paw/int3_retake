@@ -29,24 +29,43 @@ const currentPath = Astro.url.pathname;
 <style>
     .chapter-nav {
         scroll-margin-top: var(--nav-height);
+        border-top: 2.5px solid var(--color-text-secondary, black);
+        border-bottom: 2.5px solid var(--color-text-secondary, black);
+        background: var(--color-bg, white);
     }
 
     .chapter-nav__list {
         display: flex;
         list-style: none;
-        border-top: 1px solid var(--color-lines, #000);
-        border-bottom: 1px solid var(--color-lines, #000);
+        justify-content: center;
+        flex-wrap: wrap;
     }
 
     .chapter-nav__link {
         display: block;
-        padding: 0.75rem 1.5rem;
+        padding: 1.5rem 0.55rem;
         text-decoration: none;
         color: inherit;
+        font-family: var(--font-family-serif);
+        font-size: var(--step--2);
+        white-space: nowrap;
     }
 
     .chapter-nav__link[aria-current="page"] {
-        background: #000;
-        color: #fff;
+        font-weight: var(--weight-bold);
+        background: var(--color-text-secondary, black);
+        color: var(--color-bg, white);
+        text-decoration: underline;
+    }
+
+    @media (min-width: 768px) {
+        .chapter-nav__link {
+            padding: 1rem 1.5rem;
+        }
+
+        .chapter-nav__link:hover {
+            text-decoration: underline;
+            background: var(--color-pink, pink);
+        }
     }
 </style>
