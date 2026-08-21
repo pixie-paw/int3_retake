@@ -1,0 +1,52 @@
+---
+// src/components/story/ChapterNav.astro
+import { chapters } from "../../data/chapters";
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="chapter-nav" id="chapter-nav" aria-label="Story chapters">
+    <ul class="chapter-nav__list">
+        {
+            chapters.map((chapter) => {
+                const isActive = currentPath === chapter.href;
+                return (
+                    <li>
+                        <a
+                            href={`${chapter.href}#chapter-nav`}
+                            class="chapter-nav__link"
+                            aria-current={isActive ? "page" : undefined}
+                        >
+                            {chapter.label}
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</nav>
+
+<style>
+    .chapter-nav {
+        scroll-margin-top: var(--nav-height);
+    }
+
+    .chapter-nav__list {
+        display: flex;
+        list-style: none;
+        border-top: 1px solid var(--color-lines, #000);
+        border-bottom: 1px solid var(--color-lines, #000);
+    }
+
+    .chapter-nav__link {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .chapter-nav__link[aria-current="page"] {
+        background: #000;
+        color: #fff;
+    }
+</style>
