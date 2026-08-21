@@ -72,6 +72,53 @@
         background: none;
         border: none;
     }
+
+    /* Desktop: dropdown mode */
+    @media (min-width: 768px) {
+        .language-switcher {
+            position: relative;
+        }
+
+        .language-switcher__toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .language-switcher__list {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            flex-direction: column;
+            gap: 0;
+            min-width: 100%;
+            background: #fff;
+            border: 1px solid var(--color-lines, #000);
+            padding: 0;
+            margin-top: 0.75rem;
+            z-index: 30;
+        }
+
+        .language-switcher__list.language-switcher__list--open {
+            display: flex;
+        }
+
+        .language-switcher__option {
+            border-bottom: 1px solid var(--color-lines, #000);
+        }
+
+        .language-switcher__option:last-child {
+            border-bottom: none;
+        }
+
+        .language-switcher__option-btn {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 1rem;
+            text-align: left;
+        }
+    }
 </style>
 
 <script>

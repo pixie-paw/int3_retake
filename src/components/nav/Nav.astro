@@ -78,24 +78,5 @@ import MobileMenuToggle from "./MobileMenuToggle.astro";
             align-items: center;
             gap: 1rem;
         }
-
-        /* Switch LanguageSwitcher into dropdown mode on desktop */
-        .nav__desktop .language-switcher__toggle {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .nav__desktop .language-switcher__list {
-            display: none;
-            position: absolute;
-            flex-direction: column;
-            background: #fff;
-            border: 1px solid var(--color-lines, #000);
-            padding: 0.5rem;
-            margin-top: 0.75rem;
-        }
-        .nav__desktop .language-switcher__list.language-switcher__list--open {
-            display: flex;
-        }
     }
 </style>
