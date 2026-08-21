@@ -11,7 +11,11 @@ body {
     min-height: 100vh;
     background-image: url('../assets/hero/noise_texture.png');
         background-repeat: repeat;
-    /* font-family: system-ui, sans-serif; */
+    font-family: var(--font-family, sans-serif);
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
 
 .visually-hidden {

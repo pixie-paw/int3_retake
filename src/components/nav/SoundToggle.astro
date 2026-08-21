@@ -1,7 +1,5 @@
 ---
 // src/components/nav/SoundToggle.astro
-import soundOnUrl from "../../assets/nav/sound-on.svg?url";
-import soundOffUrl from "../../assets/nav/sound-off.svg?url";
 ---
 
 <button
@@ -11,23 +9,43 @@ import soundOffUrl from "../../assets/nav/sound-off.svg?url";
     aria-pressed="false"
     aria-label="Play video sound"
 >
-    <img
-        src={soundOnUrl}
-        alt=""
+    <svg
         class="sound-toggle__icon sound-toggle__icon--on"
         width="28"
-        height="28"
-    />
-    <img
-        src={soundOffUrl}
-        alt=""
-        class="sound-toggle__icon sound-toggle__icon--off"
-        width="24"
         height="24"
-    />
+        viewBox="0 0 25 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M21.1902 19.8985L19.2381 18.3473C23.5895 13.6248 23.5895 6.4054 19.238 1.68287L21.1902 0.131817C26.27 5.76519 26.2699 14.265 21.1902 19.8985ZM16.241 4.06414L14.2865 5.617C16.6205 8.09654 16.6205 11.9337 14.2866 14.4133L16.241 15.9661C19.3029 12.5748 19.3029 7.4554 16.241 4.06414ZM11.2462 0L4.74456 5.08105H0V15.0222H4.75183L11.2462 20V0Z"
+            fill="currentColor"></path>
+    </svg>
+    <svg
+        class="sound-toggle__icon sound-toggle__icon--off"
+        width="28"
+        height="23"
+        viewBox="0 0 28 23"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M23.9533 11.4177L27.91 15.3744L25.9067 17.3777L21.9501 13.421L17.9933 17.3777L15.9901 15.3744L19.9468 11.4177L15.9901 7.46101L17.9933 5.4578L21.9501 9.41448L25.9067 5.4578L27.91 7.46101L23.9533 11.4177ZM12.7334 0L5.372 5.79262H0V17.1259H5.38023L12.7334 22.8009V0Z"
+            fill="currentColor"></path>
+    </svg>
 </button>
 
 <style>
+    .sound-toggle {
+        color: var(--color-text-secondary, black);
+    }
+
     .sound-toggle__icon--on {
         display: none;
     }
@@ -36,6 +54,21 @@ import soundOffUrl from "../../assets/nav/sound-off.svg?url";
     }
     .sound-toggle[data-playing="true"] .sound-toggle__icon--off {
         display: none;
+    }
+
+    @media (min-width: 768px) {
+        .sound-toggle {
+            border: 2.5px solid var(--color-text-secondary, black);
+            padding: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sound-toggle:hover {
+            background: var(--color-pink, pink);
+            color: var(--color-text-secondary, black);
+        }
     }
 </style>
 

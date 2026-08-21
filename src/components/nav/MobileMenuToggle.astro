@@ -1,7 +1,5 @@
 ---
 // src/components/nav/MobileMenuToggle.astro
-import burgerMenuUrl from "../../assets/nav/burger_menu.svg?url";
-import burgerClosedUrl from "../../assets/nav/burger_closed.svg?url";
 ---
 
 <button
@@ -12,20 +10,52 @@ import burgerClosedUrl from "../../assets/nav/burger_closed.svg?url";
     aria-controls="mobile-menu-dialog"
     aria-label="Open menu"
 >
-    <img
-        src={burgerMenuUrl}
-        alt=""
+    <svg
         class="mobile-menu-toggle__icon mobile-menu-toggle__icon--open"
-        width="24"
-        height="24"
-    />
-    <img
-        src={burgerClosedUrl}
-        alt=""
+        width="27"
+        height="17"
+        viewBox="0 0 27 17"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <line
+            x1="1.09278e-07"
+            y1="15.25"
+            x2="27"
+            y2="15.25"
+            stroke="currentColor"
+            stroke-width="2.5"></line>
+        <line
+            x1="1.09278e-07"
+            y1="8.25"
+            x2="27"
+            y2="8.25"
+            stroke="currentColor"
+            stroke-width="2.5"></line>
+        <line
+            x1="1.09278e-07"
+            y1="1.25"
+            x2="27"
+            y2="1.25"
+            stroke="currentColor"
+            stroke-width="2.5"></line>
+    </svg>
+    <svg
         class="mobile-menu-toggle__icon mobile-menu-toggle__icon--close"
-        width="24"
+        width="23"
         height="24"
-    />
+        viewBox="0 0 23 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <path
+            d="M1.76562 1.76562L20.2656 21.7656M19.2656 1.76562L2.26562 21.7656"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="square"></path>
+    </svg>
 </button>
 
 <dialog
@@ -39,6 +69,10 @@ import burgerClosedUrl from "../../assets/nav/burger_closed.svg?url";
 </dialog>
 
 <style>
+    .mobile-menu-toggle__btn {
+        color: var(--color-text-secondary, black);
+    }
+
     .mobile-menu-toggle__icon--close {
         display: none;
     }
@@ -103,13 +137,20 @@ import burgerClosedUrl from "../../assets/nav/burger_closed.svg?url";
             nextOpen ? "Close menu" : "Open menu",
         );
 
-        nextOpen ? menuDialog?.show() : menuDialog?.close();
+        if (nextOpen) {
+            menuDialog?.show();
+            document.body.classList.add("no-scroll");
+        } else {
+            menuDialog?.close();
+            document.body.classList.remove("no-scroll");
+        }
     });
 
     menuDialog?.addEventListener("close", () => {
         menuBtn?.setAttribute("data-open", "false");
         menuBtn?.setAttribute("aria-expanded", "false");
         menuBtn?.setAttribute("aria-label", "Open menu");
+        document.body.classList.remove("no-scroll");
     });
 
     document.addEventListener("keydown", (event) => {
