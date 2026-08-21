@@ -11,8 +11,8 @@
 >
     <svg
         class="sound-toggle__icon sound-toggle__icon--on"
-        width="25"
-        height="20"
+        width="28"
+        height="24"
         viewBox="0 0 25 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +54,21 @@
     }
     .sound-toggle[data-playing="true"] .sound-toggle__icon--off {
         display: none;
+    }
+
+    @media (min-width: 768px) {
+        .sound-toggle {
+            border: 2.5px solid var(--color-text-secondary, black);
+            padding: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sound-toggle:hover {
+            background: var(--color-pink, pink);
+            color: var(--color-text-secondary, black);
+        }
     }
 </style>
 

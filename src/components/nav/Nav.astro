@@ -36,8 +36,18 @@ import MobileMenuToggle from "./MobileMenuToggle.astro";
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #fff;
+        background: var(--color-bg);
         padding-inline: 1rem;
+    }
+
+    .nav::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 12rem;
+        right: 0;
+        height: 2.5px;
+        background: var(--color-text-secondary, black);
     }
 
     .nav__desktop {
@@ -60,9 +70,11 @@ import MobileMenuToggle from "./MobileMenuToggle.astro";
     }
 
     .nav__link {
+        font-family: var(--font-family-sans);
+        font-size: var(--step-3);
+        font-weight: var(--weight-regular);
         text-decoration: none;
         color: inherit;
-        font-weight: var(--weight-regular);
     }
 
     .nav__link--filled {
@@ -77,6 +89,22 @@ import MobileMenuToggle from "./MobileMenuToggle.astro";
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+
+        .nav__link {
+            border: 2.5px solid var(--color-text-secondary, black);
+            padding: 0.5rem 1rem;
+        }
+
+        .nav__link:hover {
+            background: var(--color-pink, pink);
+            color: var(--color-text-secondary, black);
+            font-weight: var(--weight-medium);
+        }
+
+        .nav__link--filled {
+            border: none;
+            border: 2.5px solid var(--color-text-secondary, black);
         }
     }
 </style>
