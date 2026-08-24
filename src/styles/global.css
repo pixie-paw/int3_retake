@@ -10,7 +10,7 @@ html {
 body {
     min-height: 100vh;
     background-image: url('../assets/hero/noise_texture.png');
-        background-repeat: repeat;
+    background-repeat: repeat;
     font-family: var(--font-family, sans-serif);
 }
 

@@ -5,10 +5,13 @@ import antwerpSrc from "../../assets/chapter1/antwerp_img.png";
 import antwerpMobileSrc from "../../assets/chapter1/antwerp_mobile.png";
 import paper02Src from "../../assets/chapter1/paper_02.png";
 import tapeMovingALotUrl from "../../assets/chapter1/titleCh01_01.png?url";
+import tapeWorldsUrl from "../../assets/chapter1/titleCh01_02.png?url";
+import pinkFlowersSrc from "../../assets/chapter1/pink_flowers.png";
 
 const antwerp = await getImage({ src: antwerpSrc, format: "webp" });
 const antwerpMobile = await getImage({ src: antwerpMobileSrc, format: "webp" });
 const paper02 = await getImage({ src: paper02Src, format: "webp" });
+const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
 ---
 
 <div class="chapter1">
@@ -57,6 +60,53 @@ const paper02 = await getImage({ src: paper02Src, format: "webp" });
         >
         </div>
     </div>
+
+    <section class="chapter1__block chapter1__block--worlds">
+        <img
+            src={pinkFlowers.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter1__flowers"
+        />
+
+        <div class="chapter1__label-wrap">
+            <img
+                src={tapeWorldsUrl}
+                alt=""
+                aria-hidden="true"
+                class="chapter1__label-img chapter1__label-img--worlds"
+            />
+            <h3 class="visually-hidden">Worlds of her own making</h3>
+        </div>
+
+        <p class="chapter1__paragraph">
+            Spending so much time on her own taught her how to fill her days
+            with small worlds of her own making. She wandered outside gathering
+            wildflowers into bouquets, baked cakes at home and, eventually,
+            began sewing. One interest seemed to lead naturally into another, as
+            she found different ways to keep her hands and imagination occupied.
+        </p>
+
+        <div class="chapter1__quote-wrap">
+            <blockquote class="chapter1__quote">
+                <span
+                    class="chapter1__quote-mark chapter1__quote-mark--open"
+                    aria-hidden="true">"</span
+                >
+                <p class="chapter1__quote-text">
+                    She never related to other children, and became an odd,
+                    dreamy, self-sufficient child, who entertained herself by
+                    gathering bouquets of wild flowers, baking cakes, and,
+                    eventually, sewing clothes.
+                </p>
+                <span
+                    class="chapter1__quote-mark chapter1__quote-mark--close"
+                    aria-hidden="true">"</span
+                >
+            </blockquote>
+            <p class="chapter1__quote-attribution">— Avery Trufelman</p>
+        </div>
+    </section>
 </div>
 
 <style>
@@ -89,11 +139,15 @@ const paper02 = await getImage({ src: paper02Src, format: "webp" });
 
     .chapter1__hero {
         position: relative;
+        overflow-x: clip;
     }
 
     .chapter1__block {
         position: relative;
         z-index: 2;
+    }
+
+    .chapter1__block--moving {
         left: 2rem;
     }
 
@@ -122,6 +176,72 @@ const paper02 = await getImage({ src: paper02Src, format: "webp" });
         background-position: bottom center;
         background-repeat: no-repeat;
         margin-top: -14rem;
+    }
+
+    .chapter1__block--worlds {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        position: relative;
+        margin-top: 3rem;
+    }
+
+    .chapter1__flowers {
+        display: none;
+    }
+
+    .chapter1__label-img--worlds {
+        max-width: 360px;
+    }
+
+    .chapter1__paragraph {
+        font-size: var(--step-0);
+        color: var(--color-text-main);
+        text-align: justify;
+        max-width: 500px;
+    }
+
+    .chapter1__quote-wrap {
+        padding-top: 3rem;
+        max-width: 1001.46px;
+    }
+
+    .chapter1__quote-mark {
+        display: block;
+        font-family: var(--font-family-punktype);
+        font-weight: var(--weight-black, 900);
+        font-size: 7rem;
+        line-height: 1;
+        color: var(--color-text-main);
+        line-height: 0;
+    }
+
+    .chapter1__quote-mark--close {
+        text-align: right;
+        margin-top: 3.3rem;
+    }
+
+    .chapter1__quote-mark--open {
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+
+    .chapter1__quote-text {
+        font-family: var(--font-family-bestieseventy);
+        font-size: var(--step-4);
+        line-height: 2rem;
+        color: var(--color-text-main);
+        text-align: center;
+        letter-spacing: 0.02em;
+    }
+
+    .chapter1__quote-attribution {
+        text-align: right;
+        font-family: var(--font-family-bestieseventy);
+        font-size: var(--step-4);
+        line-height: 2rem;
+        color: var(--color-text-main);
+        margin-top: 1.5rem;
     }
 
     @media (min-width: 768px) {
@@ -160,6 +280,46 @@ const paper02 = await getImage({ src: paper02Src, format: "webp" });
             aspect-ratio: 3746.93 / 2283;
             background-image: var(--cityscape-bg-desktop);
             top: -6vw;
+        }
+
+        .chapter1__block--worlds {
+            position: relative;
+            margin-left: 8rem;
+        }
+
+        .chapter1__flowers {
+            display: block;
+            position: absolute;
+            top: -2rem;
+            right: 4rem;
+            width: 346.67px;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .chapter1__paragraph {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .chapter1__quote {
+            max-width: 1001.46px;
+        }
+
+        .chapter1__quote-mark {
+            font-size: 9rem;
+        }
+
+        .chapter1__quote-text {
+            text-align: left;
+            line-height: 3rem;
+        }
+
+        .chapter1__quote-attribution {
+            line-height: 3rem;
+            padding-top: 1rem;
         }
     }
 </style>
