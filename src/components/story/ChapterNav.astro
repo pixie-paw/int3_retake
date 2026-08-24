@@ -26,9 +26,9 @@ const currentPath = Astro.url.pathname;
 <style>
     .chapter-nav {
         position: sticky;
-        top: var(--nav-height);
+        top: calc(var(--nav-height) - 2.5px);
         z-index: 15;
-        /* scroll-margin-top: var(--nav-height); */
+        scroll-margin-top: var(--nav-height);
         border-top: 2.5px solid var(--color-text-secondary, black);
         border-bottom: 2.5px solid var(--color-text-secondary, black);
         background: var(--color-bg, white);
@@ -110,5 +110,4 @@ const currentPath = Astro.url.pathname;
     }
 
     init();
-    
 </script>
