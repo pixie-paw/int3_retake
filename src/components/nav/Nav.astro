@@ -11,18 +11,38 @@ import MobileMenuToggle from "./MobileMenuToggle.astro";
     <nav class="nav__desktop" aria-label="Main">
         <SoundToggle />
         <LanguageSwitcher />
-        <a href="#" class="nav__link">All Collection Stories</a>
-        <a href="#" class="nav__link nav__link--filled">Visit Museum</a>
+        <a
+            href="https://www.momu.be/en/collection-stories"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav__link">All Collection Stories</a
+        >
+        <a
+            href="https://www.momu.be/en/exhibitions/the-antwerp-six"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav__link nav__link--filled">Visit Museum</a
+        >
     </nav>
 
     <MobileMenuToggle>
         <div class="mobile-menu-toggle__row"><SoundToggle /></div>
         <div class="mobile-menu-toggle__row"><LanguageSwitcher /></div>
         <div class="mobile-menu-toggle__row">
-            <a href="#" class="nav__link">All Collection Stories</a>
+            <a
+                href="https://www.momu.be/en/collection-stories"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav__link">All Collection Stories</a
+            >
         </div>
         <div class="mobile-menu-toggle__row mobile-menu-toggle__row--cta">
-            <a href="#" class="nav__link nav__link--filled">Visit Museum</a>
+            <a
+                href="https://www.momu.be/en/exhibitions/the-antwerp-six"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav__link nav__link--filled">Visit Museum</a
+            >
         </div>
     </MobileMenuToggle>
 </header>

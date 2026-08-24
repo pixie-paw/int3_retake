@@ -9,15 +9,36 @@ import tapeWorldsUrl from "../../assets/chapter1/titleCh01_02.png?url";
 import pinkFlowersSrc from "../../assets/chapter1/pink_flowers.png";
 import tapeMotherUrl from "../../assets/chapter1/titleCh01_03.png?url";
 import diarySrc from "../../assets/chapter1/diary.png";
+import tapeFashionUrl from "../../assets/chapter1/titleCh01_04.png?url";
+import tapeCombiningUrl from "../../assets/chapter1/titleCh01_05.png?url";
+import eyeTestSrc from "../../assets/chapter1/eye_test_collage.png";
+import laceLeftSrc from "../../assets/chapter1/lace_left.png";
+import laceRightSrc from "../../assets/chapter1/lace_right.png";
 
 const antwerp = await getImage({ src: antwerpSrc, format: "webp" });
 const antwerpMobile = await getImage({ src: antwerpMobileSrc, format: "webp" });
 const paper02 = await getImage({ src: paper02Src, format: "webp" });
 const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
 const diary = await getImage({ src: diarySrc, format: "webp" });
+const eyeTest = await getImage({ src: eyeTestSrc, format: "webp" });
+const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
+const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 ---
 
 <div class="chapter1">
+    <img
+        src={laceLeft.src}
+        alt=""
+        aria-hidden="true"
+        class="chapter1__lace chapter1__lace--left"
+    />
+    <img
+        src={laceRight.src}
+        alt=""
+        aria-hidden="true"
+        class="chapter1__lace chapter1__lace--right"
+    />
+
     <p class="chapter1__eyebrow">Chapter 1</p>
 
     <div class="chapter1__title-wrap">
@@ -144,9 +165,75 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
             </p>
         </div>
     </section>
+
+    <div class="chapter1__fashion-row">
+        <img
+            src={eyeTest.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter1__eye-test"
+        />
+
+        <div class="chapter1__fashion-content">
+            <section class="chapter1__block chapter1__block--fashion">
+                <div class="chapter1__label-wrap">
+                    <img
+                        src={tapeFashionUrl}
+                        alt=""
+                        aria-hidden="true"
+                        class="chapter1__label-img chapter1__label-img--fashion"
+                    />
+                    <h3 class="visually-hidden">Fashion for herself</h3>
+                </div>
+
+                <p class="chapter1__paragraph">
+                    As she became more comfortable with sewing, Marina began
+                    using it to dress herself up. As a teenager, she made her
+                    own high-waisted velvet skirts, later described as "a bit
+                    gothic", and wore them with her mother's vintage boots from
+                    Paris, combined with dark kohl around her eyes. Piece by
+                    piece, she was developing a look that was distinctly her
+                    own, built from handmade clothes, old finds and unusual
+                    combinations.
+                </p>
+            </section>
+
+            <section class="chapter1__block chapter1__block--combining">
+                <div class="chapter1__label-wrap">
+                    <img
+                        src={tapeCombiningUrl}
+                        alt=""
+                        aria-hidden="true"
+                        class="chapter1__label-img chapter1__label-img--combining"
+                    />
+                    <h3 class="visually-hidden">Combining things</h3>
+                </div>
+
+                <p class="chapter1__paragraph">
+                    Marina's curiosity seemed to move freely from one thing to
+                    another. She could be gathering flowers one moment, sewing
+                    the next, or finding new ways to wear something old. She
+                    experimented with whatever was around her, combining things
+                    that interested her and letting one idea naturally lead to
+                    another.
+                </p>
+            </section>
+
+            <a
+                href="https://www.momu.be/en/exhibitions/the-antwerp-six"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="chapter1__momu-link">Discover Marina's world at MoMu</a
+            >
+        </div>
+    </div>
 </div>
 
 <style>
+    .chapter1__lace {
+        display: none;
+    }
+
     /* Moving section */
     .chapter1 {
         position: relative;
@@ -165,7 +252,7 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
     .chapter1__title-img {
         display: block;
         width: 100%;
-        max-width: 500px;
+        max-width: 31rem;
         height: auto;
         margin-bottom: 2rem;
     }
@@ -192,14 +279,14 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
         display: block;
         width: auto;
         height: auto;
-        max-width: 220px;
+        max-width: 14rem;
     }
 
     .chapter1__note p {
         font-size: var(--step-0);
         color: var(--color-text-main);
         text-align: justify;
-        max-width: 213px;
+        max-width: 14rem;
     }
 
     .chapter1__cityscape {
@@ -229,19 +316,19 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
     }
 
     .chapter1__label-img--worlds {
-        max-width: 360px;
+        max-width: 20rem;
     }
 
     .chapter1__paragraph {
         font-size: var(--step-0);
         color: var(--color-text-main);
         text-align: justify;
-        max-width: 500px;
+        max-width: 31rem;
     }
 
     .chapter1__quote-wrap {
         padding-top: 3rem;
-        max-width: 1001.46px;
+        max-width: 63rem;
     }
 
     .chapter1__quote-mark {
@@ -293,7 +380,7 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
     .chapter1__diary {
         display: block;
         width: 100%;
-        max-width: 325.13px;
+        max-width: 20rem;
         height: auto;
         margin-left: -4rem;
         margin-top: -4rem;
@@ -306,24 +393,90 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
     }
 
     .chapter1__label-img--mother {
-        max-width: 360px;
+        max-width: 20rem;
     }
 
-    @media (min-width: 768px) {
+    /* Fashion section */
+    .chapter1__fashion-row {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .chapter1__eye-test {
+        display: block;
+        width: 100%;
+        max-width: 25rem;
+        height: auto;
+        margin-inline: auto;
+    }
+
+    .chapter1__fashion-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .chapter1__label-img--fashion {
+        max-width: 20rem;
+    }
+
+    .chapter1__label-img--combining {
+        max-width: 18rem;
+    }
+
+    .chapter1__momu-link {
+        color: inherit;
+        text-decoration: underline;
+        font-family: var(--font-family-serif);
+    }
+
+    .chapter1__momu-link {
+        font-family: var(--font-family-sans);
+        color: var(--color-text-secondary);
+        font-size: var(--step-0);
+    }
+
+    @media (min-width: 48rem) {
+        /* Lace decoration */
+        .chapter1__lace {
+            display: block;
+            position: absolute;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .chapter1__lace--left {
+            left: 0%;
+            top: 30%;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .chapter1__lace--right {
+            right: 0%;
+            top: 0rem;
+            bottom: -10rem;
+            z-index: 10;
+        }
+
         /* Moving section */
         .chapter1 {
             padding: 10rem 3rem;
         }
 
         .chapter1__title-img {
-            max-width: 979.63px;
+            max-width: 61rem;
         }
 
         .chapter1__block--moving {
             position: absolute;
             top: 16vw;
             left: 15rem;
-            max-width: 550px;
+            max-width: 34rem;
         }
 
         .chapter1__label-img {
@@ -335,7 +488,7 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
             background-image: var(--note-bg);
             background-size: 100% 100%;
             background-repeat: no-repeat;
-            max-width: 657.8px;
+            max-width: 41rem;
             padding-bottom: 6rem;
             padding-left: 3rem;
             padding-right: 3rem;
@@ -359,7 +512,7 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
             position: absolute;
             top: -2rem;
             right: 4rem;
-            width: 346.67px;
+            width: 22rem;
             height: auto;
             object-fit: contain;
             pointer-events: none;
@@ -372,7 +525,7 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
         }
 
         .chapter1__quote {
-            max-width: 1001.46px;
+            max-width: 63rem;
         }
 
         .chapter1__quote-mark {
@@ -398,7 +551,7 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
         }
 
         .chapter1__diary {
-            max-width: 440px;
+            max-width: 28rem;
             flex-shrink: 0;
             position: relative;
             top: -13rem;
@@ -409,9 +562,41 @@ const diary = await getImage({ src: diarySrc, format: "webp" });
 
         .chapter1__mother-content {
             flex: 1;
-            max-width: 700px;
+            max-width: 44rem;
             align-self: center;
             align-items: center;
+        }
+
+        .chapter1__label-img--mother {
+            padding-bottom: 1rem;
+        }
+
+        /* Fashion section */
+        .chapter1__fashion-row {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .chapter1__eye-test {
+            order: initial;
+            max-width: 53rem;
+            margin-inline: 0;
+            flex-shrink: 0;
+            position: relative;
+            top: -8rem;
+        }
+
+        .chapter1__fashion-content {
+            order: initial;
+            max-width: 30rem;
+        }
+
+        .chapter1__label-img--fashion,
+        .chapter1__label-img--combining {
+            padding-bottom: 2rem;
         }
     }
 </style>
