@@ -75,10 +75,16 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
                 ".youtube-facade__play-btn",
             );
             const videoId = $facade.dataset.videoId;
+            let $iframe: HTMLIFrameElement | null = null;
 
             $playBtn?.addEventListener("click", () => {
-                const $iframe = document.createElement("iframe");
-                $iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+                const $soundToggle =
+                    document.querySelector<HTMLButtonElement>(".sound-toggle");
+                const soundOn = $soundToggle?.dataset.playing === "true";
+
+                $iframe = document.createElement("iframe");
+                const muteParam = soundOn ? "" : "&mute=1";
+                $iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&enablejsapi=1${muteParam}`;
                 $iframe.title = "YouTube video player";
                 $iframe.setAttribute("frameborder", "0");
                 $iframe.setAttribute(
@@ -94,6 +100,17 @@ const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
                 $facade.innerHTML = "";
                 $facade.appendChild($iframe);
+            });
+
+            document.addEventListener("sound-toggle-change", (event) => {
+                if (!$iframe || !$iframe.contentWindow) return;
+                const { playing } = (event as CustomEvent<{ playing: boolean }>)
+                    .detail;
+                const func = playing ? "unMute" : "mute";
+                $iframe.contentWindow.postMessage(
+                    JSON.stringify({ event: "command", func, args: [] }),
+                    "*",
+                );
             });
         });
     }
