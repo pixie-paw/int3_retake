@@ -2,8 +2,32 @@
 // src/pages/index.astro
 import StoryLayout from "../layouts/StoryLayout.astro";
 import IntroContent from "../components/story/IntroContent.astro";
+import Chapter1Content from "../components/story/Chapter1Content.astro";
+import Chapter2Content from "../components/story/Chapter2Content.astro";
+import Chapter3Content from "../components/story/Chapter3Content.astro";
+import Chapter4Content from "../components/story/Chapter4Content.astro";
 ---
 
 <StoryLayout title="Marina Yee — MoMu Antwerp | Intro">
-	<IntroContent />
+	<section id="intro" class="story-section">
+		<IntroContent />
+	</section>
+	<section id="chapter-1" class="story-section">
+		<Chapter1Content />
+	</section>
+	<section id="chapter-2" class="story-section">
+		<Chapter2Content />
+	</section>
+	<section id="chapter-3" class="story-section">
+		<Chapter3Content />
+	</section>
+	<section id="chapter-4" class="story-section">
+		<Chapter4Content />
+	</section>
 </StoryLayout>
+
+<style>
+	.story-section {
+		scroll-margin-top: calc(var(--nav-height) + var(--chapter-nav-height));
+	}
+</style>
