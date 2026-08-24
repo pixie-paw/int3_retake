@@ -7,11 +7,14 @@ import paper02Src from "../../assets/chapter1/paper_02.png";
 import tapeMovingALotUrl from "../../assets/chapter1/titleCh01_01.png?url";
 import tapeWorldsUrl from "../../assets/chapter1/titleCh01_02.png?url";
 import pinkFlowersSrc from "../../assets/chapter1/pink_flowers.png";
+import tapeMotherUrl from "../../assets/chapter1/titleCh01_03.png?url";
+import diarySrc from "../../assets/chapter1/diary.png";
 
 const antwerp = await getImage({ src: antwerpSrc, format: "webp" });
 const antwerpMobile = await getImage({ src: antwerpMobileSrc, format: "webp" });
 const paper02 = await getImage({ src: paper02Src, format: "webp" });
 const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
+const diary = await getImage({ src: diarySrc, format: "webp" });
 ---
 
 <div class="chapter1">
@@ -107,9 +110,44 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
             <p class="chapter1__quote-attribution">— Avery Trufelman</p>
         </div>
     </section>
+
+    <section class="chapter1__block chapter1__block--mother">
+        <img
+            src={diary.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter1__diary"
+        />
+
+        <div class="chapter1__mother-content">
+            <div class="chapter1__label-wrap">
+                <img
+                    src={tapeMotherUrl}
+                    alt=""
+                    aria-hidden="true"
+                    class="chapter1__label-img chapter1__label-img--mother"
+                />
+                <h3 class="visually-hidden">
+                    Her mother, objects, and the past
+                </h3>
+            </div>
+
+            <p class="chapter1__paragraph">
+                Her mother, later described by Marina as someone with great
+                taste, opened up yet another world to her. She ran an antique
+                shop, a place with old pieces of furniture, textiles and
+                garments — objects that had already belonged somewhere, to
+                someone, before finding their way into the shop. Surrounded by
+                these materials and stories from the past, she taught Marina how
+                to sew, giving her yet another way to experiment with what she
+                was surrounded by.
+            </p>
+        </div>
+    </section>
 </div>
 
 <style>
+    /* Moving section */
     .chapter1 {
         position: relative;
         padding: 4rem 1.5rem;
@@ -139,7 +177,6 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
 
     .chapter1__hero {
         position: relative;
-        /* overflow-x: clip; */
     }
 
     .chapter1__block {
@@ -178,6 +215,7 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
         margin-top: -14rem;
     }
 
+    /* Worlds section */
     .chapter1__block--worlds {
         display: flex;
         flex-direction: column;
@@ -244,7 +282,35 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
         margin-top: 1.5rem;
     }
 
+    /* Mother section */
+    .chapter1__block--mother {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .chapter1__diary {
+        display: block;
+        width: 100%;
+        max-width: 325.13px;
+        height: auto;
+        margin-left: -4rem;
+        margin-top: -4rem;
+    }
+
+    .chapter1__mother-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .chapter1__label-img--mother {
+        max-width: 360px;
+    }
+
     @media (min-width: 768px) {
+        /* Moving section */
         .chapter1 {
             padding: 10rem 3rem;
         }
@@ -282,6 +348,7 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
             top: -6vw;
         }
 
+        /* Worlds section */
         .chapter1__block--worlds {
             position: relative;
             margin-left: 8rem;
@@ -320,6 +387,31 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
         .chapter1__quote-attribution {
             line-height: 3rem;
             padding-top: 1rem;
+        }
+
+        /* Mother section */
+        .chapter1__block--mother {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 8rem;
+        }
+
+        .chapter1__diary {
+            max-width: 440px;
+            flex-shrink: 0;
+            position: relative;
+            top: -13rem;
+            right: -6rem;
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .chapter1__mother-content {
+            flex: 1;
+            max-width: 700px;
+            align-self: center;
+            align-items: center;
         }
     }
 </style>
