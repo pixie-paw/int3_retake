@@ -139,7 +139,7 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
 
     .chapter1__hero {
         position: relative;
-        overflow-x: clip;
+        /* overflow-x: clip; */
     }
 
     .chapter1__block {
@@ -167,9 +167,9 @@ const pinkFlowers = await getImage({ src: pinkFlowersSrc, format: "webp" });
 
     .chapter1__cityscape {
         width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
         position: relative;
-        left: 50%;
-        margin-left: -50vw;
         aspect-ratio: 2204 / 2282;
         background-image: var(--cityscape-bg-mobile);
         background-size: cover;
