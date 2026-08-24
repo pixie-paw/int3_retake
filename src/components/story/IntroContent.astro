@@ -5,14 +5,28 @@ import introTitleUrl from "../../assets/intro/intro_title.svg?url";
 import paper01Src from "../../assets/intro/paper_01.png";
 import paper02Src from "../../assets/intro/paper_02.png";
 import flowerSrc from "../../assets/intro/pink_flower.png";
+import laceSrc from "../../assets/intro/lace_intro.png";
 
 const paper01 = await getImage({ src: paper01Src, format: "webp" });
 const paper02 = await getImage({ src: paper02Src, format: "webp" });
 const flower = await getImage({ src: flowerSrc, format: "webp" });
+const lace = await getImage({ src: laceSrc, format: "webp" });
 ---
 
 <section class="intro">
     <img src={flower.src} alt="" aria-hidden="true" class="intro__flower" />
+    <img
+        src={lace.src}
+        alt=""
+        aria-hidden="true"
+        class="intro__lace intro__lace--left"
+    />
+    <img
+        src={lace.src}
+        alt=""
+        aria-hidden="true"
+        class="intro__lace intro__lace--right"
+    />
 
     <div class="intro__content">
         <p class="intro__eyebrow">Intro</p>
@@ -24,14 +38,11 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
                 aria-hidden="true"
                 class="intro__title-img"
             />
-            <h2 class="visually-hidden">Who was SHE?</h2>
+            <h2 class="visually-hidden">Who was she?</h2>
         </div>
 
         <div class="intro__text-block">
-            <div
-                class="intro__body"
-                style={`background-image: url(${paper01.src})`}
-            >
+            <div class="intro__body" style={`--paper-bg: url(${paper01.src})`}>
                 <p class="intro__body-text">
                     Marina Yee was one of the members of the fashion group
                     called the Antwerp Six. She was often described as the most
@@ -54,10 +65,7 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
                 </p>
             </div>
 
-            <p
-                class="intro__note"
-                style={`background-image: url(${paper02.src})`}
-            >
+            <p class="intro__note" style={`--note-bg: url(${paper02.src})`}>
                 If you want to know more about Marina, listen to her story in
                 this beautiful interview by Galerie Sofie Van de Velde.
             </p>
@@ -91,6 +99,14 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
             padding: 2rem 1.5rem;
         }
 
+        .intro__lace {
+            display: none;
+        }
+
+        .intro__content {
+            padding-top: 2rem;
+        }
+
         .intro__flower {
             display: none;
         }
@@ -109,7 +125,7 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
             display: block;
             width: 100%;
             height: auto;
-            margin-bottom: -1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .intro__body-text {
@@ -136,6 +152,11 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
         .intro__note {
             font-family: var(--font-family-bestieseventy);
             color: var(--color-text-main, black);
+            text-align: center;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 2rem;
+            letter-spacing: 0.07em;
         }
 
         .intro__note-arrow {
@@ -152,7 +173,26 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
         @media (min-width: 768px) {
             .intro {
                 position: relative;
-                padding: 4rem 3rem;
+                padding: 4rem 6rem;
+            }
+
+            .intro__lace {
+                display: block;
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: auto;
+                object-fit: cover;
+                pointer-events: none;
+            }
+
+            .intro__lace--left {
+                left: 0;
+            }
+
+            .intro__lace--right {
+                right: 0;
+                transform: scaleX(-1);
             }
 
             .intro__flower {
@@ -181,10 +221,12 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
 
             .intro__title-img {
                 max-width: 770px;
+                margin-bottom: -1.5rem;
             }
 
             .intro__body {
                 max-width: 684.79px;
+                background-image: var(--paper-bg);
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
                 padding: 5rem;
@@ -196,6 +238,7 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
             .intro__note {
                 max-width: 458.13px;
                 margin-inline: auto;
+                background-image: var(--note-bg);
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
                 padding: 2rem 2.5rem;
@@ -203,6 +246,8 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
                 margin-top: -2rem;
                 letter-spacing: 0.08em;
                 font-size: var(--step--1);
+                text-align: left;
+                line-height: 2rem;
             }
 
             .intro__note-arrow {
@@ -217,7 +262,7 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
             }
 
             .intro__video-block {
-                max-width: 800px;
+                max-width: 935px;
                 margin-inline: auto;
                 margin-top: 3rem;
             }
