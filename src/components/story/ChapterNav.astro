@@ -5,30 +5,30 @@ import { chapters } from "../../data/chapters";
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="chapter-nav" id="chapter-nav" aria-label="Story chapters">
+<nav class="chapter-nav" aria-label="Story chapters">
     <ul class="chapter-nav__list">
         {
-            chapters.map((chapter) => {
-                const isActive = currentPath === chapter.href;
-                return (
-                    <li>
-                        <a
-                            href={`${chapter.href}#chapter-nav`}
-                            class="chapter-nav__link"
-                            aria-current={isActive ? "page" : undefined}
-                        >
-                            {chapter.label}
-                        </a>
-                    </li>
-                );
-            })
+            chapters.map((chapter) => (
+                <li>
+                    <a
+                        href={`#${chapter.id}`}
+                        class="chapter-nav__link"
+                        data-chapter-link={chapter.id}
+                    >
+                        {chapter.label}
+                    </a>
+                </li>
+            ))
         }
     </ul>
 </nav>
 
 <style>
     .chapter-nav {
-        scroll-margin-top: var(--nav-height);
+        position: sticky;
+        top: var(--nav-height);
+        z-index: 15;
+        /* scroll-margin-top: var(--nav-height); */
         border-top: 2.5px solid var(--color-text-secondary, black);
         border-bottom: 2.5px solid var(--color-text-secondary, black);
         background: var(--color-bg, white);
@@ -69,3 +69,46 @@ const currentPath = Astro.url.pathname;
         }
     }
 </style>
+
+<script>
+    function init() {
+        const $links = document.querySelectorAll<HTMLAnchorElement>(
+            "[data-chapter-link]",
+        );
+
+        const $sections = Array.from($links)
+            .map(($link) =>
+                document.getElementById($link.dataset.chapterLink ?? ""),
+            )
+            .filter((el): el is HTMLElement => el !== null);
+
+        if ($sections.length === 0) return;
+
+        const setActive = (id: string) => {
+            $links.forEach(($link) => {
+                if ($link.dataset.chapterLink === id) {
+                    $link.setAttribute("aria-current", "page");
+                } else {
+                    $link.removeAttribute("aria-current");
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActive(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+        );
+
+        $sections.forEach(($section) => observer.observe($section));
+        setActive($sections[0].id);
+    }
+
+    init();
+    
+</script>
