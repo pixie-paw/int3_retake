@@ -6,17 +6,19 @@ import paper01Src from "../../assets/intro/paper_01.png";
 import paper02Src from "../../assets/intro/paper_02.png";
 import flowerSrc from "../../assets/intro/pink_flower.png";
 import laceSrc from "../../assets/intro/lace_intro.png";
+import laceLeftSrc from "../../assets/intro/lace_left.png";
 
 const paper01 = await getImage({ src: paper01Src, format: "webp" });
 const paper02 = await getImage({ src: paper02Src, format: "webp" });
 const flower = await getImage({ src: flowerSrc, format: "webp" });
 const lace = await getImage({ src: laceSrc, format: "webp" });
+const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
 ---
 
 <section class="intro">
     <img src={flower.src} alt="" aria-hidden="true" class="intro__flower" />
     <img
-        src={lace.src}
+        src={laceLeft.src}
         alt=""
         aria-hidden="true"
         class="intro__lace intro__lace--left"
