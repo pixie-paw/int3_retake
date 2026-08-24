@@ -1,7 +1,165 @@
 ---
-// src/components/story/Chapter1Content.astro
+import { getImage } from "astro:assets";
+import titleCh1Url from "../../assets/chapter1/title_ch1.svg?url";
+import antwerpSrc from "../../assets/chapter1/antwerp_img.png";
+import antwerpMobileSrc from "../../assets/chapter1/antwerp_mobile.png";
+import paper02Src from "../../assets/chapter1/paper_02.png";
+import tapeMovingALotUrl from "../../assets/chapter1/titleCh01_01.png?url";
+
+const antwerp = await getImage({ src: antwerpSrc, format: "webp" });
+const antwerpMobile = await getImage({ src: antwerpMobileSrc, format: "webp" });
+const paper02 = await getImage({ src: paper02Src, format: "webp" });
 ---
 
-<section class="chapter-placeholder">
-    <h2>Chapter 1 content goes here</h2>
-</section>
+<div class="chapter1">
+    <p class="chapter1__eyebrow">Chapter 1</p>
+
+    <div class="chapter1__title-wrap">
+        <img
+            src={titleCh1Url}
+            alt=""
+            aria-hidden="true"
+            class="chapter1__title-img"
+        />
+        <h2 class="visually-hidden">Beginnings</h2>
+    </div>
+
+    <div class="chapter1__hero">
+        <section class="chapter1__block chapter1__block--moving">
+            <div class="chapter1__label-wrap">
+                <img
+                    src={tapeMovingALotUrl}
+                    alt=""
+                    aria-hidden="true"
+                    class="chapter1__label-img"
+                />
+                <h3 class="visually-hidden">Moving a lot</h3>
+            </div>
+
+            <div
+                class="chapter1__note"
+                style={`--note-bg: url(${paper02.src})`}
+            >
+                <p>
+                    Marina's childhood was marked by constant change. Before the
+                    age of fifteen, her family had moved at least eleven times
+                    across Belgium. Home was not always an easy place either;
+                    her father's temper made the atmosphere unpredictable, and
+                    friends rarely came over. Marina spent much of her time
+                    alone, eventually describing herself as a "lone wolf".
+                </p>
+            </div>
+        </section>
+
+        <div
+            class="chapter1__cityscape"
+            style={`--cityscape-bg-mobile: url(${antwerpMobile.src}); --cityscape-bg-desktop: url(${antwerp.src})`}
+        >
+        </div>
+    </div>
+</div>
+
+<style>
+    .chapter1 {
+        position: relative;
+        padding: 4rem 1.5rem;
+    }
+
+    .chapter1__eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-family: var(--font-family-serif);
+        font-weight: var(--weight-bold);
+        color: var(--color-text-main);
+        margin-bottom: 0.5rem;
+    }
+
+    .chapter1__title-img {
+        display: block;
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+
+    .chapter1__title-wrap {
+        position: relative;
+        z-index: 3;
+    }
+
+    .chapter1__hero {
+        position: relative;
+    }
+
+    .chapter1__block {
+        position: relative;
+        z-index: 2;
+        left: 2rem;
+    }
+
+    .chapter1__label-img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 220px;
+    }
+
+    .chapter1__note p {
+        font-size: var(--step-0);
+        color: var(--color-text-main);
+        text-align: justify;
+        max-width: 213px;
+    }
+
+    .chapter1__cityscape {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        aspect-ratio: 2204 / 2282;
+        background-image: var(--cityscape-bg-mobile);
+        background-size: cover;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        margin-top: -14rem;
+    }
+
+    @media (min-width: 768px) {
+        .chapter1 {
+            padding: 10rem 3rem;
+        }
+
+        .chapter1__title-img {
+            max-width: 979.63px;
+        }
+
+        .chapter1__block--moving {
+            position: absolute;
+            top: 16vw;
+            left: 15rem;
+            max-width: 550px;
+        }
+
+        .chapter1__label-img {
+            margin-bottom: -2rem;
+            margin-left: 3rem;
+        }
+
+        .chapter1__note p {
+            background-image: var(--note-bg);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            max-width: 657.8px;
+            padding-bottom: 6rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            padding-top: 3rem;
+        }
+
+        .chapter1__cityscape {
+            aspect-ratio: 3746.93 / 2283;
+            background-image: var(--cityscape-bg-desktop);
+            top: -6vw;
+        }
+    }
+</style>
