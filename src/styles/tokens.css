@@ -12,6 +12,8 @@
     /* ------------------------------ */
     /*            FONT SIZES          */
     /* ------------------------------ */
+    /* 18px at small & 28px at big (quotes) */
+    --step-4: clamp(1.125rem, 0.9167rem + 0.9259cqi, 1.75rem);
     /* 24px at small & 24px at big (language) */
     --step-3: clamp(1.5rem, 1.5rem + 0cqi, 1.5rem);
     /* 20px at small & 32px at big (chapter titles) */
