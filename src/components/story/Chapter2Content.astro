@@ -9,14 +9,37 @@ import tapeWorldUrl from "../../assets/chapter2/titleCh02_02.png?url";
 import vivBowieSrc from "../../assets/chapter2/viv_bowie.png";
 import tapeAcademyUrl from "../../assets/chapter2/titleCh02_03.png?url";
 import flowersPinkSrc from "../../assets/chapter2/flowers_pink.png";
+import tapeRadiatedUrl from "../../assets/chapter2/titleCh02_04.png?url";
+import tapeOutspokenUrl from "../../assets/chapter2/titleCh02_05.png?url";
+import ladiladilaSrc from "../../assets/chapter2/ladiladila.png";
+import doitSrc from "../../assets/chapter2/doit.png";
+import laceLeftSrc from "../../assets/chapter2/lace_left.png";
+import laceRightSrc from "../../assets/chapter2/lace_right.png";
 
 const margiela = await getImage({ src: margielaSrc, format: "webp" });
 const flower = await getImage({ src: flowerSrc, format: "webp" });
 const vivBowie = await getImage({ src: vivBowieSrc, format: "webp" });
 const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
+const ladiladila = await getImage({ src: ladiladilaSrc, format: "webp" });
+const doit = await getImage({ src: doitSrc, format: "webp" });
+const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
+const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 ---
 
 <div class="chapter2">
+    <img
+        src={laceLeft.src}
+        alt=""
+        aria-hidden="true"
+        class="chapter2__lace chapter2__lace--left"
+    />
+    <img
+        src={laceRight.src}
+        alt=""
+        aria-hidden="true"
+        class="chapter2__lace chapter2__lace--right"
+    />
+
     <div class="chapter2__header">
         <p class="chapter2__eyebrow">Chapter 2</p>
 
@@ -181,11 +204,83 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
             </InfoReveal>
         </div>
     </section>
+
+    <section class="chapter2__block chapter2__block--fashion">
+        <div class="chapter2__fashion-label1">
+            <img
+                src={tapeRadiatedUrl}
+                alt=""
+                aria-hidden="true"
+                class="chapter2__label-img--fashion"
+            />
+            <h3 class="visually-hidden">She "radiated fashion"</h3>
+        </div>
+
+        <p class="chapter2__fashion-para1 chapter2__paragraph">
+            Fashion seemed to come naturally to Marina, not only through what
+            she created, but through the way she carried herself. People who
+            knew her at the time remembered that she simply "radiated fashion".
+            Dirk Bikkembergs later recalled arriving at the Academy for his
+            entrance exam and seeing Marina moving quickly through the corridor
+            in a huge white parachute parka. As she walked, the coat caught the
+            air and billowed around her, The image was so striking that
+            Bikkembergs said that this encounter convinced him to study fashion.
+        </p>
+
+        <div class="chapter2__fashion-visual">
+            <img
+                src={ladiladila.src}
+                alt=""
+                aria-hidden="true"
+                class="chapter2__ladiladila-img"
+            />
+        </div>
+
+        <div class="chapter2__fashion-label2">
+            <img
+                src={tapeOutspokenUrl}
+                alt=""
+                aria-hidden="true"
+                class="chapter2__label-img chapter2__label-img--bold"
+            />
+            <h3 class="visually-hidden">Outspoken, opinionated, and bold</h3>
+        </div>
+
+        <p class="chapter2__fashion-para2 chapter2__paragraph">
+            That same confidence was also present in the way Marina spoke about
+            their future. She later remembered herself in those years as
+            outspoken, opinionated and bold. When the group began wondering
+            whether designers from Belgium could ever become known
+            internationally, Martin doubted they could, but Marina already
+            believed they could make their way beyond Belgium.
+        </p>
+
+        <div class="chapter2__fashion-quote">
+            <img
+                src={doit.src}
+                alt=""
+                aria-hidden="true"
+                class="chapter2__doit-img"
+            />
+            <blockquote class="visually-hidden">
+                <p>
+                    Yes, we can do it. If those other designers can do it, so
+                    can we.
+                </p>
+            </blockquote>
+            <p class="visually-hidden">— Marina Yee</p>
+        </div>
+    </section>
 </div>
 
 <style>
+    .chapter2__lace {
+        display: none;
+    }
+
     /* Martin section */
     .chapter2 {
+        position: relative;
         padding: 4rem 1.5rem;
     }
 
@@ -336,10 +431,11 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
     .chapter2__viv-bowie {
         grid-area: photo;
         display: block;
-        width: 100%;
-        max-width: 22rem;
+        width: 100vw;
+        max-width: none;
         height: auto;
-        margin-inline: auto;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
     }
 
     /* Academy section */
@@ -373,7 +469,92 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
         margin-top: 3rem;
     }
 
+    /* Fashion section */
+    .chapter2__label-img--fashion {
+        width: 100%;
+        height: auto;
+        max-width: 18rem;
+        margin-inline: auto;
+        padding-bottom: 1rem;
+    }
+
+    .chapter2__block--fashion {
+        display: grid;
+        grid-template-areas:
+            "label1"
+            "para1"
+            "visual"
+            "label2"
+            "para2"
+            "quote";
+        margin-top: 5rem;
+    }
+
+    .chapter2__fashion-label1 {
+        grid-area: label1;
+    }
+
+    .chapter2__fashion-para1 {
+        grid-area: para1;
+    }
+
+    .chapter2__fashion-visual {
+        grid-area: visual;
+    }
+
+    .chapter2__fashion-label2 {
+        grid-area: label2;
+    }
+
+    .chapter2__fashion-para2 {
+        grid-area: para2;
+    }
+
+    .chapter2__fashion-quote {
+        grid-area: quote;
+    }
+
+    .chapter2__ladiladila-img {
+        display: block;
+        width: 100vw;
+        max-width: none;
+        height: auto;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-block: 2rem;
+    }
+
+    .chapter2__doit-img {
+        display: block;
+        width: 100vw;
+        max-width: none;
+        height: auto;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-block: 2rem;
+    }
+
     @media (min-width: 48rem) {
+        .chapter2__lace {
+            display: block;
+            position: absolute;
+            /* width: 80px; */
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .chapter2__lace--left {
+            left: 0;
+            top: 0; /* adjust once you see where it should start */
+        }
+
+        .chapter2__lace--right {
+            right: 0;
+            top: 65rem;
+            z-index: -1;
+        }
+
         /* Martin section */
         .chapter2 {
             padding: 2rem 6rem;
@@ -443,15 +624,17 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
 
         /* World around section */
         .chapter2__block--world {
-            grid-template-columns: minmax(280px, 480px) 1fr;
+            grid-template-columns: minmax(18rem, 30rem) 1fr;
             grid-template-areas: "info photo";
             align-items: start;
             gap: 3rem;
         }
 
         .chapter2__viv-bowie {
-            max-width: 48rem;
-            margin-inline: 0;
+            width: clamp(28rem, 45vw, 47rem);
+            max-width: none;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         /* Academy section */
@@ -459,7 +642,7 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
             display: block;
             position: absolute;
             top: 14rem;
-            right: 12rem;
+            right: 22rem;
             width: 24rem;
             height: auto;
             object-fit: contain;
@@ -469,6 +652,38 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
 
         .chapter2__block--academy {
             margin-top: -14rem;
+        }
+
+        /* Fashion section */
+        .chapter2__block--fashion {
+            grid-template-columns: minmax(30rem, 1fr) minmax(30rem, 1fr);
+            grid-template-areas:
+                "visual label1"
+                "visual para1"
+                "visual label2"
+                "visual para2"
+                "quote  quote";
+            align-items: center;
+            justify-items: center;
+            margin-top: 7rem;
+        }
+
+        .chapter2__ladiladila-img {
+            width: clamp(28rem, 55vw, 47rem);
+            max-width: none;
+            margin-left: -4rem;
+            margin-right: 0;
+        }
+
+        .chapter2__doit-img {
+            width: 100%;
+            height: auto;
+            max-width: 47rem;
+            margin-inline: auto;
+        }
+
+        .chapter2__label-img--bold {
+            margin-top: 3rem;
         }
     }
 </style>
