@@ -238,7 +238,10 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 
     .chapter1 {
         position: relative;
-        padding: 4rem 1.5rem;
+        /* padding: 4rem 1.5rem; */
+        padding-top: 6rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 
     .chapter1__eyebrow {
@@ -476,10 +479,6 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         }
 
         /* Moving section */
-        .chapter1 {
-            padding: 10rem 3rem;
-        }
-
         .chapter1__title-img {
             max-width: 61rem;
         }
@@ -507,8 +506,15 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         }
 
         .chapter1__cityscape {
+            width: calc(100% + 3rem); /* cancels 1.5rem padding on each side */
+            margin-left: -1.5rem;
+            margin-right: -1.5rem;
+            position: relative;
             aspect-ratio: 3746.93 / 2283;
             background-image: var(--cityscape-bg-desktop);
+            background-size: cover;
+            background-position: bottom center;
+            background-repeat: no-repeat;
             top: -6vw;
         }
 
@@ -592,7 +598,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             flex-direction: row-reverse;
             align-items: flex-start;
             margin-top: 5rem;
-            margin-right: -3rem;
+            margin-right: -1.5rem;
         }
 
         .chapter1__eye-test {
