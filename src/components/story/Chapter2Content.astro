@@ -1,7 +1,276 @@
 ---
-// src/components/story/Chapter2Content.astro
+import { getImage } from "astro:assets";
+import titleCh2Url from "../../assets/chapter2/title_ch2.svg?url";
+import tapeLukasUrl from "../../assets/chapter2/titleCh02_01.png?url";
+import margielaSrc from "../../assets/chapter2/martin_margiela.png";
+import flowerSrc from "../../assets/intro/pink_flower.png";
+
+const margiela = await getImage({ src: margielaSrc, format: "webp" });
+const flower = await getImage({ src: flowerSrc, format: "webp" });
 ---
 
-<section class="chapter-placeholder">
-    <h2>Chapter 2 content goes here</h2>
-</section>
+<div class="chapter2">
+    <div class="chapter2__header">
+        <p class="chapter2__eyebrow">Chapter 2</p>
+
+        <div class="chapter2__title-wrap">
+            <img
+                src={titleCh2Url}
+                alt=""
+                aria-hidden="true"
+                class="chapter2__title-img"
+            />
+            <h2 class="visually-hidden">Formative Years</h2>
+        </div>
+
+        <img
+            src={flower.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter2__flower"
+        />
+    </div>
+
+    <div class="chapter2__lukas-wrap">
+        <section class="chapter2__block chapter2__block--lukas">
+            <div class="chapter2__label-wrap">
+                <img
+                    src={tapeLukasUrl}
+                    alt=""
+                    aria-hidden="true"
+                    class="chapter2__label-img"
+                />
+                <h3 class="visually-hidden">
+                    St. Lukas Institute of Fine Arts and Martin Margiela
+                </h3>
+            </div>
+
+            <p class="chapter2__paragraph chapter2__paragraph--first">
+                By fifteen, Marina's world was beginning to open up beyond the
+                one she had created at home. She enrolled at the St. Lukas
+                Institute of Fine Arts in Hasselt, bringing the interests she
+                had explored mostly on her own into the art school.
+            </p>
+
+            <img
+                src={margiela.src}
+                alt=""
+                aria-hidden="true"
+                class="chapter2__margiela"
+            />
+
+            <p class="chapter2__paragraph chapter2__paragraph--second">
+                Here, her distinctive way of dressing caught the attention of
+                Martin Margiela, another soon to be famous fashion designer. He
+                was drawn to what he called Marina's "crazy combinations", and
+                the two quickly became close because of their shared fascination
+                with clothing and art. For Marina, this was also the beginning
+                of a new kind of creative companionship — she now had someone
+                with whom she could exchange ideas instead of exploring them
+                entirely on her own.
+            </p>
+        </section>
+
+        <div class="chapter2__quote-wrap">
+            <blockquote class="chapter2__quote">
+                <span
+                    class="chapter2__quote-mark chapter2__quote-mark--open"
+                    aria-hidden="true">"</span
+                >
+                <p class="chapter2__quote-text">
+                    He loved my weird combinations. He thought they were
+                    fantastic. And so we had something in common, a shared
+                    passion for fashion and clothes.
+                </p>
+                <span
+                    class="chapter2__quote-mark chapter2__quote-mark--close"
+                    aria-hidden="true">"</span
+                >
+            </blockquote>
+            <p class="chapter2__quote-attribution">— Marina Yee</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .chapter2 {
+        padding: 4rem 1.5rem;
+    }
+
+    .chapter2__header {
+        position: relative;
+    }
+
+    .chapter2__flower {
+        display: none;
+    }
+
+    .chapter2__eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-family: var(--font-family-serif);
+        font-weight: var(--weight-bold);
+        color: var(--color-text-main);
+        margin-bottom: 0.5rem;
+    }
+
+    .chapter2__title-img {
+        display: block;
+        width: 100%;
+        max-width: 23rem;
+        height: auto;
+        margin-bottom: 4rem;
+    }
+
+    .chapter2__lukas-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chapter2__block--lukas {
+        display: grid;
+        grid-template-areas:
+            "label"
+            "para1"
+            "image"
+            "para2";
+        justify-items: center;
+    }
+
+    .chapter2__label-wrap {
+        grid-area: label;
+    }
+
+    .chapter2__paragraph--first {
+        grid-area: para1;
+    }
+
+    .chapter2__margiela {
+        grid-area: image;
+        display: block;
+        width: 100%;
+        max-width: 20rem;
+        height: auto;
+        margin-inline: auto;
+    }
+
+    .chapter2__paragraph--second {
+        grid-area: para2;
+    }
+
+    .chapter2__label-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 20rem;
+        margin-bottom: 1rem;
+    }
+
+    .chapter2__paragraph {
+        font-size: var(--step-0);
+        color: var(--color-text-main);
+        text-align: justify;
+    }
+
+    .chapter2__quote-mark {
+        display: block;
+        font-family: var(--font-family-punktype);
+        font-weight: var(--weight-black, 900);
+        font-size: 5rem;
+        line-height: 1;
+        color: var(--color-text-main);
+    }
+
+    .chapter2__quote-mark--close {
+        text-align: right;
+    }
+
+    .chapter2__quote-text {
+        font-family: var(--font-family-bestieseventy);
+        font-size: var(--step-4);
+        line-height: 2rem;
+        color: var(--color-text-main);
+        letter-spacing: 0.02em;
+        text-align: center;
+    }
+
+    .chapter2__quote-attribution {
+        text-align: right;
+        font-family: var(--font-family-bestieseventy);
+        font-size: var(--step-4);
+        letter-spacing: 0.02em;
+        color: var(--color-text-main);
+        margin-top: 1rem;
+    }
+
+    @media (min-width: 48rem) {
+        .chapter2 {
+            padding: 2rem 6rem;
+        }
+
+        .chapter2__flower {
+            display: block;
+            position: absolute;
+            top: 7rem;
+            right: 8rem;
+            width: 6rem;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .chapter2__title-img {
+            max-width: 60rem;
+        }
+
+        .chapter2__block--lukas {
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1fr 0.5fr;
+            grid-template-areas:
+                "image label"
+                "image para1"
+                "image para2";
+            justify-content: center;
+            grid-template-rows: 9rem 8rem 11rem;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .chapter2__margiela {
+            width: 100%;
+            height: auto;
+            max-width: 35rem;
+            margin-inline: 0;
+        }
+
+        .chapter2__label-img {
+            max-width: 22rem;
+        }
+
+        .chapter2__paragraph {
+            width: 100%;
+            max-width: 32rem;
+        } 
+        
+        .chapter2__quote-wrap {
+            width: 100%;
+            height: auto;
+            max-width: 68rem;
+            margin-top: 10rem;
+            justify-content: center;
+        }
+
+        .chapter2__quote-mark {
+            font-size: 7rem;
+        }
+
+        .chapter2__quote-text {
+            text-align: left;
+            line-height: 2.5rem;
+        }
+    }
+</style>

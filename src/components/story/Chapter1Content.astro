@@ -28,13 +28,13 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 <div class="chapter1">
     <img
         src={laceLeft.src}
-        alt=""
+        alt="Decorative lace stretching across the left side of the window."
         aria-hidden="true"
         class="chapter1__lace chapter1__lace--left"
     />
     <img
         src={laceRight.src}
-        alt=""
+        alt="Decorative lace stretching across the right side of the window."
         aria-hidden="true"
         class="chapter1__lace chapter1__lace--right"
     />
@@ -44,7 +44,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     <div class="chapter1__title-wrap">
         <img
             src={titleCh1Url}
-            alt=""
+            alt="Image that visually represents the title, reading 'Beginnings' in a decorative font and style."
             aria-hidden="true"
             class="chapter1__title-img"
         />
@@ -56,9 +56,9 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             <div class="chapter1__label-wrap">
                 <img
                     src={tapeMovingALotUrl}
-                    alt=""
+                    alt="Image that visually represents the subtitle, reading 'Moving a lot' in a decorative font and style."
                     aria-hidden="true"
-                    class="chapter1__label-img"
+                    class="chapter1__label-img chapter1__label-img--moving"
                 />
                 <h3 class="visually-hidden">Moving a lot</h3>
             </div>
@@ -88,28 +88,30 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     <section class="chapter1__block chapter1__block--worlds">
         <img
             src={pinkFlowers.src}
-            alt=""
+            alt="Decorative pink flowers."
             aria-hidden="true"
             class="chapter1__flowers"
         />
-
         <div class="chapter1__label-wrap">
-            <img
-                src={tapeWorldsUrl}
-                alt=""
-                aria-hidden="true"
-                class="chapter1__label-img chapter1__label-img--worlds"
-            />
-            <h3 class="visually-hidden">Worlds of her own making</h3>
-        </div>
+            <div>
+                <img
+                    src={tapeWorldsUrl}
+                    alt="Image that visually represents the subtitle, reading 'Worlds of her own making' in a decorative font and style."
+                    aria-hidden="true"
+                    class="chapter1__label-img chapter1__label-img--worlds"
+                />
+                <h3 class="visually-hidden">Worlds of her own making</h3>
+            </div>
 
-        <p class="chapter1__paragraph">
-            Spending so much time on her own taught her how to fill her days
-            with small worlds of her own making. She wandered outside gathering
-            wildflowers into bouquets, baked cakes at home and, eventually,
-            began sewing. One interest seemed to lead naturally into another, as
-            she found different ways to keep her hands and imagination occupied.
-        </p>
+            <p class="chapter1__paragraph">
+                Spending so much time on her own taught her how to fill her days
+                with small worlds of her own making. She wandered outside
+                gathering wildflowers into bouquets, baked cakes at home and,
+                eventually, began sewing. One interest seemed to lead naturally
+                into another, as she found different ways to keep her hands and
+                imagination occupied.
+            </p>
+        </div>
 
         <div class="chapter1__quote-wrap">
             <blockquote class="chapter1__quote">
@@ -135,7 +137,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     <section class="chapter1__block chapter1__block--mother">
         <img
             src={diary.src}
-            alt=""
+            alt="Image that represents a diary, in a collage style, with a dried flower and surrouded by paper and some cloth."
             aria-hidden="true"
             class="chapter1__diary"
         />
@@ -144,7 +146,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             <div class="chapter1__label-wrap">
                 <img
                     src={tapeMotherUrl}
-                    alt=""
+                    alt="Image that visually represents the subtitle, reading 'Her mother, objects, and the past' in a decorative font and style."
                     aria-hidden="true"
                     class="chapter1__label-img chapter1__label-img--mother"
                 />
@@ -169,7 +171,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     <div class="chapter1__fashion-row">
         <img
             src={eyeTest.src}
-            alt=""
+            alt="A collage image composed of parts of Marina's own artwork, including a mannequin bust, a skirt created by her, a woman's head and a door full of posters, textures and a pannel just like the one eye doctors use when they test your eyesight."
             aria-hidden="true"
             class="chapter1__eye-test"
         />
@@ -179,7 +181,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
                 <div class="chapter1__label-wrap">
                     <img
                         src={tapeFashionUrl}
-                        alt=""
+                        alt="Image that visually represents the subtitle, reading 'Fashion for herself' in a decorative font and style."
                         aria-hidden="true"
                         class="chapter1__label-img chapter1__label-img--fashion"
                     />
@@ -202,7 +204,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
                 <div class="chapter1__label-wrap">
                     <img
                         src={tapeCombiningUrl}
-                        alt=""
+                        alt="Image that visually represents the subtitle, reading 'Combining things' in a decorative font and style."
                         aria-hidden="true"
                         class="chapter1__label-img chapter1__label-img--combining"
                     />
@@ -234,7 +236,6 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         display: none;
     }
 
-    /* Moving section */
     .chapter1 {
         position: relative;
         padding: 4rem 1.5rem;
@@ -257,6 +258,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         margin-bottom: 2rem;
     }
 
+    /* Moving section */
     .chapter1__title-wrap {
         position: relative;
         z-index: 3;
@@ -266,27 +268,31 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         position: relative;
     }
 
-    .chapter1__block {
+    .chapter1__block--moving {
         position: relative;
         z-index: 2;
-    }
-
-    .chapter1__block--moving {
-        left: 2rem;
+        display: flex;
+        flex-direction: column;
     }
 
     .chapter1__label-img {
         display: block;
         width: auto;
         height: auto;
+    }
+
+    .chapter1__label-img--moving {
         max-width: 14rem;
+        z-index: 2;
+        margin-left: -5rem;
+        margin-bottom: 0.5rem;
     }
 
     .chapter1__note p {
         font-size: var(--step-0);
         color: var(--color-text-main);
         text-align: justify;
-        max-width: 14rem;
+        max-width: 16rem;
     }
 
     .chapter1__cityscape {
@@ -302,10 +308,18 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         margin-top: -14rem;
     }
 
+    .chapter1__label-wrap {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     /* Worlds section */
     .chapter1__block--worlds {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 1.5rem;
         position: relative;
         margin-top: 3rem;
@@ -317,6 +331,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 
     .chapter1__label-img--worlds {
         max-width: 20rem;
+        margin-bottom: 0.5rem;
     }
 
     .chapter1__paragraph {
@@ -389,11 +404,11 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     .chapter1__mother-content {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
     }
 
     .chapter1__label-img--mother {
         max-width: 20rem;
+        margin-bottom: 0.5rem;
     }
 
     /* Fashion section */
@@ -420,10 +435,12 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 
     .chapter1__label-img--fashion {
         max-width: 20rem;
+        margin-bottom: 0.5rem;
     }
 
     .chapter1__label-img--combining {
         max-width: 18rem;
+        margin-bottom: 0.5rem;
     }
 
     .chapter1__momu-link {
@@ -481,7 +498,6 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 
         .chapter1__label-img {
             margin-bottom: -2rem;
-            margin-left: 3rem;
         }
 
         .chapter1__note p {
@@ -520,8 +536,11 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             z-index: -1;
         }
 
+        .chapter1__label-img--worlds {
+            margin-bottom: 1rem;
+        }
+
         .chapter1__paragraph {
-            padding-top: 1rem;
             padding-bottom: 1rem;
         }
 
@@ -569,7 +588,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         }
 
         .chapter1__label-img--mother {
-            padding-bottom: 1rem;
+            margin-bottom: 1rem;
         }
 
         /* Fashion section */
@@ -577,8 +596,8 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             display: flex;
             flex-direction: row-reverse;
             align-items: flex-start;
-            gap: 3rem;
             margin-top: 5rem;
+            margin-right: -3rem;
         }
 
         .chapter1__eye-test {
@@ -593,11 +612,12 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         .chapter1__fashion-content {
             order: initial;
             max-width: 30rem;
+            justify-content: center;
         }
 
         .chapter1__label-img--fashion,
         .chapter1__label-img--combining {
-            padding-bottom: 2rem;
+            margin-bottom: 1rem;
         }
     }
 </style>
