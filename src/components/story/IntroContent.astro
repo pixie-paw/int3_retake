@@ -16,16 +16,21 @@ const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
 ---
 
 <section class="intro">
-    <img src={flower.src} alt="" aria-hidden="true" class="intro__flower" />
+    <img
+        src={flower.src}
+        alt="Pink decorative flower."
+        aria-hidden="true"
+        class="intro__flower"
+    />
     <img
         src={laceLeft.src}
-        alt=""
+        alt="Decorative lace stretching across the left side of the window."
         aria-hidden="true"
         class="intro__lace intro__lace--left"
     />
     <img
         src={lace.src}
-        alt=""
+        alt="Decorative lace stretching across the right side of the window."
         aria-hidden="true"
         class="intro__lace intro__lace--right"
     />
@@ -36,7 +41,7 @@ const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
         <div class="intro__title-wrap">
             <img
                 src={introTitleUrl}
-                alt=""
+                alt="Image that visually represents the title, reading 'Who was she?' in a decorative font and style."
                 aria-hidden="true"
                 class="intro__title-img"
             />
