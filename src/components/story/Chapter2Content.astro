@@ -7,10 +7,13 @@ import flowerSrc from "../../assets/intro/pink_flower.png";
 import InfoReveal from "./InfoReveal.astro";
 import tapeWorldUrl from "../../assets/chapter2/titleCh02_02.png?url";
 import vivBowieSrc from "../../assets/chapter2/viv_bowie.png";
+import tapeAcademyUrl from "../../assets/chapter2/titleCh02_03.png?url";
+import flowersPinkSrc from "../../assets/chapter2/flowers_pink.png";
 
 const margiela = await getImage({ src: margielaSrc, format: "webp" });
 const flower = await getImage({ src: flowerSrc, format: "webp" });
 const vivBowie = await getImage({ src: vivBowieSrc, format: "webp" });
+const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
 ---
 
 <div class="chapter2">
@@ -134,6 +137,49 @@ const vivBowie = await getImage({ src: vivBowieSrc, format: "webp" });
             aria-hidden="true"
             class="chapter2__viv-bowie"
         />
+    </section>
+
+    <section class="chapter2__block chapter2__block--academy">
+        <img
+            src={flowersPink.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter2__academy-flowers"
+        />
+
+        <div class="chapter2__academy-info-wrap">
+            <InfoReveal
+                id="academy-info-panel"
+                title="The Academy between 1963 to 1985"
+                text={`The fashion department from the Academy was founded in 1963 under Mary Prijot and Marthe Van Leemput. The department placed a strong emphasis on drawing, technique, elegance and good taste. Prijot admired Chanel and believed clothes should follow certain rules of propriety — even knees and elbows were considered better left covered. Former students later remembered the teaching as fairly old-school.`}
+            >
+                <div class="chapter2__academy-inner">
+                    <div class="chapter2__label-wrap">
+                        <img
+                            src={tapeAcademyUrl}
+                            alt=""
+                            aria-hidden="true"
+                            class="chapter2__label-img"
+                        />
+                        <h3 class="visually-hidden">
+                            Royal Academy of Fine Arts
+                        </h3>
+                    </div>
+
+                    <p class="chapter2__paragraph">
+                        When Marina joined Martin at the Fashion Department of
+                        the Royal Academy of Fine Arts in Antwerp, her creative
+                        circle grew even more. She studied alongside Ann
+                        Demeulemeester, Dirk Van Saene, Dirk Bikkembergs and
+                        Dries Van Noten, while Martin and Walter Van Beirendonck
+                        were a year ahead. After years of exploring mostly on
+                        her own, Marina was now surrounded by people who were
+                        just as absorbed in fashion, arts, music and new ideas
+                        just as she was.
+                    </p>
+                </div>
+            </InfoReveal>
+        </div>
     </section>
 </div>
 
@@ -296,6 +342,37 @@ const vivBowie = await getImage({ src: vivBowieSrc, format: "webp" });
         margin-inline: auto;
     }
 
+    /* Academy section */
+    .chapter2__academy-flowers {
+        display: none;
+    }
+
+    .chapter2__academy-info-wrap {
+        max-width: 30rem;
+    }
+
+    .chapter2__academy-inner {
+        display: grid;
+        grid-template-areas:
+            "label"
+            "para";
+    }
+
+    .chapter2__academy-inner .chapter2__label-wrap {
+        grid-area: label;
+        justify-self: center;
+    }
+
+    .chapter2__academy-inner .chapter2__paragraph {
+        grid-area: para;
+        justify-self: start;
+    }
+
+    .chapter2__block--academy {
+        position: relative;
+        margin-top: 3rem;
+    }
+
     @media (min-width: 48rem) {
         /* Martin section */
         .chapter2 {
@@ -375,6 +452,23 @@ const vivBowie = await getImage({ src: vivBowieSrc, format: "webp" });
         .chapter2__viv-bowie {
             max-width: 48rem;
             margin-inline: 0;
+        }
+
+        /* Academy section */
+        .chapter2__academy-flowers {
+            display: block;
+            position: absolute;
+            top: 14rem;
+            right: 12rem;
+            width: 24rem;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .chapter2__block--academy {
+            margin-top: -14rem;
         }
     }
 </style>
