@@ -1,0 +1,206 @@
+---
+import iconUrl from "../../assets/chapter2/know_more.png?url";
+
+interface Props {
+    id: string;
+    title: string;
+    text: string;
+}
+
+const { id, title, text } = Astro.props;
+---
+
+<div class="info-reveal">
+    <details class="info-reveal__details" id={id}>
+        <summary class="info-reveal__toggle">
+            <img
+                src={iconUrl}
+                alt=""
+                aria-hidden="true"
+                class="info-reveal__icon"
+            />
+            <span class="visually-hidden">Show more: {title}</span>
+        </summary>
+
+        <div class="info-reveal__panel">
+            <button type="button" class="info-reveal__close" aria-label="Close">
+                <svg
+                    width="23"
+                    height="24"
+                    viewBox="0 0 23 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M1.76562 1.76562L20.2656 21.7656M19.2656 1.76562L2.26562 21.7656"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="square"></path>
+                </svg>
+            </button>
+            <h4 class="info-reveal__title">{title}</h4>
+            <p class="info-reveal__text">{text}</p>
+        </div>
+    </details>
+
+    <div class="info-reveal__content">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .info-reveal {
+        position: relative;
+    }
+
+    .info-reveal__details {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+    .info-reveal__toggle {
+        display: inline-block;
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .info-reveal__toggle::-webkit-details-marker {
+        display: none;
+    }
+
+    .info-reveal__icon {
+        display: block;
+        width: 7rem;
+        height: auto;
+        animation: info-reveal-float 3s ease-in-out infinite;
+    }
+
+    @keyframes info-reveal-float {
+        0%,
+        100% {
+            transform: translateY(0) rotate(-3deg);
+        }
+        50% {
+            transform: translateY(-8px) rotate(3deg);
+        }
+    }
+
+    .info-reveal__details[open] .info-reveal__icon {
+        animation: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .info-reveal__icon {
+            animation: none;
+        }
+    }
+
+    .info-reveal__content {
+        position: relative;
+        z-index: 1;
+        padding-top: 1rem;
+    }
+
+    .info-reveal__panel {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-pink, pink);
+        padding: 1.5rem;
+        z-index: 2;
+    }
+
+    .info-reveal__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--color-text-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-reveal__title {
+        font-family: var(--font-family-serif);
+        font-size: var(--step-5);
+        font-weight: var(--weight-bold);
+        text-wrap: wrap;
+        color: var(--color-text-main);
+        padding-bottom: 1.5rem;
+        margin-top: 3rem;
+    }
+
+    .info-reveal__text {
+        font-family: var(--font-family-sans);
+        font-size: var(--step-6);
+        color: var(--color-text-main);
+        text-align: justify;
+        padding-bottom: 1.5rem;
+    }
+
+    @media (min-width: 48rem) {
+        .info-reveal__icon {
+            width: 9rem;
+        }
+    }
+</style>
+
+<script>
+    function init() {
+        const $detailsList = document.querySelectorAll<HTMLDetailsElement>(
+            ".info-reveal__details",
+        );
+        const openSound = new Audio(
+            `${import.meta.env.BASE_URL}audio/old-camera-shutter-click-open.mp3`,
+        );
+        const closeSound = new Audio(
+            `${import.meta.env.BASE_URL}audio/mouse-click-close.mp3`,
+        );
+
+        function isSoundOn() {
+            const $soundToggle =
+                document.querySelector<HTMLButtonElement>(".sound-toggle");
+            return $soundToggle?.dataset.playing === "true";
+        }
+
+        function playSound(audio: HTMLAudioElement) {
+            if (!isSoundOn()) return;
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
+        }
+
+        $detailsList.forEach(($details) => {
+            const $close = $details.querySelector<HTMLButtonElement>(
+                ".info-reveal__close",
+            );
+
+            $details.addEventListener("toggle", () => {
+                if ($details.open) {
+                    playSound(openSound);
+                }
+            });
+
+            $close?.addEventListener("click", (event) => {
+                event.preventDefault();
+                playSound(closeSound);
+                $details.removeAttribute("open");
+            });
+
+            document.addEventListener("click", (event) => {
+                const clickedInside = $details.contains(event.target as Node);
+                if ($details.open && !clickedInside) {
+                    playSound(closeSound);
+                    $details.removeAttribute("open");
+                }
+            });
+        });
+    }
+
+    init();
+</script>

@@ -4,9 +4,13 @@ import titleCh2Url from "../../assets/chapter2/title_ch2.svg?url";
 import tapeLukasUrl from "../../assets/chapter2/titleCh02_01.png?url";
 import margielaSrc from "../../assets/chapter2/martin_margiela.png";
 import flowerSrc from "../../assets/intro/pink_flower.png";
+import InfoReveal from "./InfoReveal.astro";
+import tapeWorldUrl from "../../assets/chapter2/titleCh02_02.png?url";
+import vivBowieSrc from "../../assets/chapter2/viv_bowie.png";
 
 const margiela = await getImage({ src: margielaSrc, format: "webp" });
 const flower = await getImage({ src: flowerSrc, format: "webp" });
+const vivBowie = await getImage({ src: vivBowieSrc, format: "webp" });
 ---
 
 <div class="chapter2">
@@ -90,9 +94,51 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
             <p class="chapter2__quote-attribution">— Marina Yee</p>
         </div>
     </div>
+
+    <section class="chapter2__block chapter2__block--world">
+        <div class="chapter2__world-info-wrap">
+            <InfoReveal
+                id="world-info-panel"
+                title="Some cultural context"
+                text={`By the 1970s, David Bowie turned clothing, makeup and image into an essential part of performance, working with designers such as Kansai Yamamoto to create identities that could change from one appearance to the next. In London, punk pushed things even further. Vivienne Westwood and Malcolm McLaren brought music and clothing together around a scene that lived in shops, clubs and on the street rather than inside traditional couture.`}
+            >
+                <div class="chapter2__label-wrap">
+                    <img
+                        src={tapeWorldUrl}
+                        alt=""
+                        aria-hidden="true"
+                        class="chapter2__label-img--world"
+                    />
+                    <h3 class="visually-hidden">The world around</h3>
+                </div>
+                <p class="chapter2__paragraph">
+                    At the same time, the world around Marina was changing too.
+                    The spirit of the late 1960s had pushed a younger generation
+                    to question the values and rules they had inherited, and
+                    that rebellion soon found its way into art, music and
+                    fashion. For young creatives, inspiration was no longer
+                    coming from the established fashion houses of Paris or
+                    Milan.
+                </p>
+            </InfoReveal>
+            <a
+                href="https://heron.libis.be/momu/s/studiecollectie/page/mode1980"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="chapter2__link">Learn more about fashion in the '80s</a
+            >
+        </div>
+        <img
+            src={vivBowie.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter2__viv-bowie"
+        />
+    </section>
 </div>
 
 <style>
+    /* Martin section */
     .chapter2 {
         padding: 4rem 1.5rem;
     }
@@ -142,6 +188,7 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
 
     .chapter2__label-wrap {
         grid-area: label;
+        justify-self: center;
     }
 
     .chapter2__paragraph--first {
@@ -167,6 +214,7 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
         height: auto;
         max-width: 20rem;
         margin-bottom: 1rem;
+        margin-inline: auto;
     }
 
     .chapter2__paragraph {
@@ -206,7 +254,50 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
         margin-top: 1rem;
     }
 
+    /* World around section */
+    .chapter2__label-img--world {
+        width: 100%;
+        height: auto;
+        max-width: 18rem;
+        margin-inline: auto;
+        padding-bottom: 1rem;
+    }
+
+    .chapter2__block--world {
+        display: grid;
+        grid-template-areas:
+            "info"
+            "photo";
+        gap: 2rem;
+        padding-top: 3rem;
+        justify-items: center;
+    }
+
+    .chapter2__world-info-wrap {
+        grid-area: info;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .chapter2__link {
+        text-decoration: underline;
+        font-family: var(--font-family-sans);
+        color: var(--color-text-secondary);
+        font-size: var(--step-2);
+    }
+
+    .chapter2__viv-bowie {
+        grid-area: photo;
+        display: block;
+        width: 100%;
+        max-width: 22rem;
+        height: auto;
+        margin-inline: auto;
+    }
+
     @media (min-width: 48rem) {
+        /* Martin section */
         .chapter2 {
             padding: 2rem 6rem;
         }
@@ -254,8 +345,8 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
         .chapter2__paragraph {
             width: 100%;
             max-width: 32rem;
-        } 
-        
+        }
+
         .chapter2__quote-wrap {
             width: 100%;
             height: auto;
@@ -271,6 +362,19 @@ const flower = await getImage({ src: flowerSrc, format: "webp" });
         .chapter2__quote-text {
             text-align: left;
             line-height: 2.5rem;
+        }
+
+        /* World around section */
+        .chapter2__block--world {
+            grid-template-columns: minmax(280px, 480px) 1fr;
+            grid-template-areas: "info photo";
+            align-items: start;
+            gap: 3rem;
+        }
+
+        .chapter2__viv-bowie {
+            max-width: 48rem;
+            margin-inline: 0;
         }
     }
 </style>
