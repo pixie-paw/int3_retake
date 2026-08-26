@@ -5,6 +5,8 @@ import tapeBelgiumUrl from "../../assets/chapter4/titleCh04_01.png?url";
 import brusselsDesktopSrc from "../../assets/chapter4/brussels_desktop.png";
 import brusselsMobileSrc from "../../assets/chapter4/brussels_mobile.png";
 import paper02Src from "../../assets/chapter1/paper_02.png";
+import tapeArtisticUrl from "../../assets/chapter4/titleCh04_02.png?url";
+import oneDaySrc from "../../assets/chapter4/one_day.png";
 
 const brusselsDesktop = await getImage({
     src: brusselsDesktopSrc,
@@ -15,6 +17,7 @@ const brusselsMobile = await getImage({
     format: "webp",
 });
 const paper02 = await getImage({ src: paper02Src, format: "webp" });
+const oneDay = await getImage({ src: oneDaySrc, format: "webp" });
 ---
 
 <div class="chapter4">
@@ -69,6 +72,53 @@ const paper02 = await getImage({ src: paper02Src, format: "webp" });
         >
         </div>
     </div>
+
+    <section class="chapter4__block chapter4__block--artistic">
+        <div class="chapter4__artistic-text">
+            <div class="chapter4__label-wrap">
+                <img
+                    src={tapeArtisticUrl}
+                    alt=""
+                    aria-hidden="true"
+                    class="chapter4__label-img chapter4__label-img--artistic"
+                />
+                <h3 class="visually-hidden">Artistic freedom</h3>
+            </div>
+
+            <p class="chapter4__paragraph">
+                Her creativity spread in every direction. She designed costumes
+                for theatre, worked on womenswear for Dirk Bikkembergs, taught
+                drawing and fashion, painted, made collages and objects,
+                experimented with interiors, and continued making clothes from
+                second-hand materials in her apartments' studio. One medium
+                seemed to open the door to another.
+            </p>
+
+            <p class="chapter4__paragraph">
+                The more room she gave herself to experiment, the more she was
+                feeling like herself again. During the years when she was less
+                visible in the fashion industry, Marina continued drawing,
+                designing, cutting, pasting and building an enormous body of
+                work in the privacy of her studio. She kept going.
+            </p>
+        </div>
+
+        <img
+            src={oneDay.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter4__one-day-img"
+        />
+
+        <a
+            href="https://www.momu.be/en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="chapter4__link"
+        >
+            Discover her reconstructed studio at MoMu
+        </a>
+    </section>
 </div>
 
 <style>
@@ -142,6 +192,47 @@ const paper02 = await getImage({ src: paper02Src, format: "webp" });
         margin-top: -13rem;
     }
 
+    /* Artistic freedom */
+    .chapter4__block--artistic {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 3rem; /* spacing after the Belgium section — tune */
+    }
+
+    .chapter4__artistic-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .chapter4__label-img--artistic {
+        max-width: 15rem;
+    }
+
+    .chapter4__paragraph {
+        font-size: var(--step-0);
+        color: var(--color-text-main);
+        text-align: justify;
+    }
+
+    .chapter4__one-day-img {
+        display: block;
+        width: calc(100% + 1.5rem);
+        max-width: none;
+        height: auto;
+        margin-left: 0;
+        margin-right: -1.5rem;
+    }
+
+    .chapter4__link {
+        text-decoration: underline;
+        font-family: var(--font-family-sans);
+        color: var(--color-text-secondary);
+        font-size: var(--step-2);
+    }
+
     @media (min-width: 48rem) {
         .chapter4 {
             padding: 2rem 6rem;
@@ -179,14 +270,53 @@ const paper02 = await getImage({ src: paper02Src, format: "webp" });
         }
 
         .chapter4__cityscape {
-            width: calc(
-                100% + 12rem
-            ); /* cancels the 6rem padding on each side */
+            width: calc(100% + 12rem);
             margin-left: -6rem;
             margin-right: -6rem;
             aspect-ratio: 1440 / 809;
             background-image: var(--cityscape-bg-desktop);
             margin-top: -10rem;
         }
+
+        /* Artistic freedom */
+        .chapter4__block--artistic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "text image"
+                "link image";
+            column-gap: 3rem;
+            row-gap: 1.5rem;
+            align-items: start;
+            margin-top: 8rem;
+        }
+
+        .chapter4__artistic-text {
+            grid-area: text;
+        }
+
+        .chapter4__one-day-img {
+            grid-area: image;
+            width: calc(100% + 6rem);
+            margin-right: -6rem;
+        }
+
+        .chapter4__link {
+            grid-area: link;
+            max-width: 32rem;
+            margin-top: -4rem;
+        }
+
+        .chapter4__artistic-text {
+            align-items: flex-start;
+        }
+
+        .chapter4__label-img--artistic {
+            max-width: 23rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .chapter4__block--artistic .chapter4__paragraph {
+            max-width: 32rem;
     }
 </style>
