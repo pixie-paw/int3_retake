@@ -1,7 +1,192 @@
 ---
-// src/components/story/Chapter4Content.astro
+import { getImage } from "astro:assets";
+import titleCh4Url from "../../assets/chapter4/title_ch4.svg?url";
+import tapeBelgiumUrl from "../../assets/chapter4/titleCh04_01.png?url";
+import brusselsDesktopSrc from "../../assets/chapter4/brussels_desktop.png";
+import brusselsMobileSrc from "../../assets/chapter4/brussels_mobile.png";
+import paper02Src from "../../assets/chapter1/paper_02.png";
+
+const brusselsDesktop = await getImage({
+    src: brusselsDesktopSrc,
+    format: "webp",
+});
+const brusselsMobile = await getImage({
+    src: brusselsMobileSrc,
+    format: "webp",
+});
+const paper02 = await getImage({ src: paper02Src, format: "webp" });
 ---
 
-<section class="chapter-placeholder">
-    <h2>Chapter 4 content goes here</h2>
-</section>
+<div class="chapter4">
+    <div class="chapter4__header">
+        <p class="chapter4__eyebrow">Chapter 4</p>
+
+        <div class="chapter4__title-wrap">
+            <img
+                src={titleCh4Url}
+                alt="This is the title of Chapter 4, which reads 'Full circle'"
+                aria-hidden="true"
+                class="chapter4__title-img"
+            />
+            <h2 class="visually-hidden">Full circle</h2>
+        </div>
+    </div>
+
+    <div class="chapter4__hero">
+        <section class="chapter4__block chapter4__block--belgium">
+            <div class="chapter4__label-wrap">
+                <img
+                    src={tapeBelgiumUrl}
+                    alt="This image represents the subtitle of Chapter 4, which reads 'Back to Belgium'"
+                    aria-hidden="true"
+                    class="chapter4__label-img"
+                />
+                <h3 class="visually-hidden">Back to Belgium</h3>
+            </div>
+
+            <div
+                class="chapter4__note"
+                style={`--note-bg: url(${paper02.src})`}
+            >
+                <p>
+                    Once she decided to step back, Marina returned to Belgium
+                    and went back to what she knew best: creating.
+                </p>
+                <p>
+                    Without trying to fit herself into one way of working, she
+                    began moving freely between different mediums again,
+                    following whatever sparked her curiosity and seeing where it
+                    would take her. In many ways, it echoed the world she had
+                    built for herself as a child — one where making could begin
+                    and end anywhere.
+                </p>
+            </div>
+        </section>
+
+        <div
+            class="chapter4__cityscape"
+            style={`--cityscape-bg-mobile: url(${brusselsMobile.src}); --cityscape-bg-desktop: url(${brusselsDesktop.src})`}
+        >
+        </div>
+    </div>
+</div>
+
+<style>
+    .chapter4 {
+        position: relative;
+        padding: 6rem 1.5rem;
+    }
+
+    .chapter4__eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-family: var(--font-family-serif);
+        font-weight: var(--weight-bold);
+        color: var(--color-text-main);
+        margin-bottom: 0.5rem;
+    }
+
+    /* Belgium section */
+    .chapter4__title-img {
+        display: block;
+        width: 100%;
+        max-width: 23rem;
+        height: auto;
+        margin-bottom: 3rem;
+    }
+
+    .chapter4__hero {
+        position: relative;
+    }
+
+    .chapter4__block--belgium {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .chapter4__label-img {
+        display: block;
+        width: 100%;
+        max-width: 15rem;
+        height: auto;
+    }
+
+    .chapter4__note {
+        max-width: 17rem;
+        background-image: none;
+        padding: 1rem 0 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .chapter4__note p {
+        font-size: var(--step-0);
+        color: var(--color-text-main);
+        text-align: justify;
+    }
+
+    .chapter4__cityscape {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        position: relative;
+        aspect-ratio: 393 / 353;
+        background-image: var(--cityscape-bg-mobile);
+        background-size: cover;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        margin-top: -13rem;
+    }
+
+    @media (min-width: 48rem) {
+        .chapter4 {
+            padding: 2rem 6rem;
+        }
+
+        .chapter4__title-img {
+            max-width: 57rem;
+        }
+
+        /* Belgium section */
+        .chapter4__block--belgium {
+            position: absolute;
+            top: 18rem;
+            left: 12rem;
+            max-width: 34rem;
+        }
+
+        .chapter4__label-img {
+            max-width: 23rem;
+            margin-bottom: -3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .chapter4__note {
+            max-width: none;
+            background-image: var(--note-bg);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding: 4rem 3rem 5rem;
+        }
+
+        .chapter4__note p {
+            max-width: 28rem;
+        }
+
+        .chapter4__cityscape {
+            width: calc(
+                100% + 12rem
+            ); /* cancels the 6rem padding on each side */
+            margin-left: -6rem;
+            margin-right: -6rem;
+            aspect-ratio: 1440 / 809;
+            background-image: var(--cityscape-bg-desktop);
+            margin-top: -10rem;
+        }
+    }
+</style>
