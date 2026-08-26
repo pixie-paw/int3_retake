@@ -72,6 +72,7 @@ src/
     global.css             # base styles, utility classes
 public/
   fonts/                    # self-hosted local fonts (.woff2)
+  momu_logo.svg              # referenced via import.meta.env.BASE_URL, not a hardcoded path — see note below
 ```
 
 ## Fonts
@@ -96,6 +97,10 @@ Tested in Chrome and Safari, on both desktop and mobile viewports (including rea
 - CSS transitions/animations for simple state changes (hover states, toggle icons, scroll bounce)
 - Native browser behavior (anchor scrolling, `<dialog>`, `IntersectionObserver`) preferred over custom JS where possible, for progressive enhancement
 - Decorative images use `aria-hidden="true"` with real, visually-hidden headings/text alongside them for accessibility
+- Two notable JS-free interaction patterns, both functional with JavaScript disabled:
+  - **Multi-fact disclosure pagination** (`InfoReveal.astro`): a hidden radio-button group with `<label for>` arrows and CSS `:checked ~` sibling matching, rather than JS-driven state
+  - **Footer email forms**: native `type="email"`/`required` browser validation, with correct/invalid feedback messages toggled via a CSS sibling combinator (`:invalid:not(:placeholder-shown)`) reacting to the input's own validity state — no JS involved in the validation logic itself. JS is used only as a light enhancement, to stop the no-backend form from doing a plain page-reloading GET request on submit.
+- Public assets referenced by path (e.g. the MoMu logo in the footer) go through `import.meta.env.BASE_URL` rather than a hardcoded absolute path, since the site deploys under a GitHub Pages subpath (`/int3_retake/`) — a bare `/momu_logo.svg` resolves to the wrong root and 404s.
 
 ## Accessibility
 
@@ -103,10 +108,12 @@ Tested in Chrome and Safari, on both desktop and mobile viewports (including rea
 - Skip-to-content link
 - All interactive elements keyboard-accessible with correct ARIA attributes (`aria-pressed`, `aria-expanded`, `aria-current`)
 - Visually-hidden real text alongside flattened/image-based titles for screen reader access
+- Responsive text truncation (e.g. the footer's "Next story" link shortening on mobile) is decoupled from what's announced to screen readers via a permanent `aria-label` on the link, so the accessible name doesn't shrink along with the visible text
 
 ## Known limitations
 
 - A very minor sub-pixel horizontal scroll may be visible on some mobile devices around full-bleed images, caused by browser scrollbar-width calculation differences. Investigated but not fully resolved without introducing other regressions (see git history for `fix/lace-adjustments`).
+- The "Next story" footer link is a placeholder destination, pending a second story existing in the series.
 
 ## Credits
 
