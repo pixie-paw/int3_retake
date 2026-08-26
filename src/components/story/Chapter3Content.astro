@@ -8,11 +8,14 @@ import tapeSuccessUrl from "../../assets/chapter3/titleCh03_02.png?url";
 import workshopSrc from "../../assets/chapter3/workshop.png";
 import tapeNotReadyUrl from "../../assets/chapter3/titleCh03_03.png?url";
 import fittingUrl from "../../assets/chapter3/fitting.svg?url";
+import tapeCherryUrl from "../../assets/chapter3/titleCh03_04.png?url";
+import museSrc from "../../assets/chapter3/muse.png";
 import InfoReveal from "./InfoReveal.astro";
 
 const london = await getImage({ src: londonSrc, format: "webp" });
 const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
 const workshop = await getImage({ src: workshopSrc, format: "webp" });
+const muse = await getImage({ src: museSrc, format: "webp" });
 ---
 
 <div class="chapter3">
@@ -160,6 +163,42 @@ const workshop = await getImage({ src: workshopSrc, format: "webp" });
             class="chapter3__fitting-img"
         />
     </section>
+
+    <section class="chapter3__block chapter3__block--muse">
+        <div class="chapter3__cherry-top">
+            <div class="chapter3__label-wrap">
+                <img
+                    src={tapeCherryUrl}
+                    alt="Image that visually represents the subtitle of this chapter. The image shows letters on some pieces of torn paper."
+                    aria-hidden="true"
+                    class="chapter3__label-img chapter3__label-img--cherry"
+                />
+                <h3 class="visually-hidden">The cherry on the top</h3>
+            </div>
+
+            <p class="chapter3__paragraph">
+                At the same time, Marina's relationship with Martin Margiela was
+                adding more uncertainty to what she was already feeling. As his
+                career in Paris was taking shape, elements of Marina's own way
+                of dressing and altering clothes — the cutting, layering, her
+                hair and makeup — were visible in Margiela's work.
+            </p>
+        </div>
+
+        <img
+            src={muse.src}
+            alt="A collage with Marina Yee and flowers that reads 'She became his muse'"
+            class="chapter3__muse-img"
+        />
+
+        <p class="chapter3__paragraph chapter3__cherry-para2">
+            What might have looked from the outside like something that a young
+            woman might dream of, only made the question of her own identity
+            more difficult: if she was becoming part of someone else's creative
+            expression, where did that leave room for her own? This made her
+            want to find the creative voice that was entirely her own even more.
+        </p>
+    </section>
 </div>
 
 <style>
@@ -281,6 +320,37 @@ const workshop = await getImage({ src: workshopSrc, format: "webp" });
 
     .chapter3__notready-wrap {
         margin-top: 3rem;
+    }
+
+    /* She became his muse / The cherry on the top */
+    .chapter3__block--muse {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-top: 5rem;
+    }
+
+    .chapter3__block--muse .chapter3__paragraph {
+        max-width: none;
+    }
+
+    .chapter3__block--muse .chapter3__label-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chapter3__label-img--cherry {
+        max-width: 17rem;
+    }
+
+    .chapter3__muse-img {
+        display: block;
+        width: calc(100% + 1.5rem);
+        max-width: 28rem;
+        height: auto;
+        margin-left: -1.5rem;
+        margin-right: auto;
     }
 
     @media (min-width: 48rem) {
@@ -410,6 +480,52 @@ const workshop = await getImage({ src: workshopSrc, format: "webp" });
 
         .chapter3__fitting-img {
             max-width: 40rem;
+        }
+
+        /* She became his muse / The cherry on the top */
+        .chapter3__block--muse {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            grid-template-areas:
+                "muse cherry-top"
+                "muse cherry-bottom";
+            /* column-gap: 3rem; */
+            /* row-gap: 1.5rem; */
+            align-items: start;
+        }
+
+        .chapter3__muse-img {
+            grid-area: muse;
+        }
+
+        .chapter3__cherry-top {
+            grid-area: cherry-top;
+        }
+
+        .chapter3__cherry-para2 {
+            grid-area: cherry-bottom;
+        }
+
+        .chapter3__block--muse .chapter3__paragraph {
+            max-width: 32rem;
+            margin-inline: auto;
+        }
+
+        .chapter3__block--muse .chapter3__label-wrap {
+            align-items: center;
+        }
+
+        .chapter3__label-img--cherry {
+            max-width: 27rem;
+            margin-top: 12rem;
+        }
+
+        .chapter3__muse-img {
+            width: calc(100% + 6rem);
+            max-width: 60rem;
+            margin-left: -6rem;
+            margin-top: -10rem;
         }
     }
 </style>
