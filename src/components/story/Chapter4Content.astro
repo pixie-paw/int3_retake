@@ -49,7 +49,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     <div class="chapter4__header">
         <p class="chapter4__eyebrow">Chapter 4</p>
 
-        <div class="chapter4__title-wrap">
+        <div class="chapter4__title-wrap" data-reveal>
             <img
                 src={titleCh4Url}
                 alt="This is the title of Chapter 4, which reads 'Full circle'"
@@ -60,7 +60,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </div>
 
-    <div class="chapter4__hero">
+    <div class="chapter4__hero" data-reveal>
         <section class="chapter4__block chapter4__block--belgium">
             <div class="chapter4__label-wrap">
                 <img
@@ -98,7 +98,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </div>
 
-    <section class="chapter4__block chapter4__block--artistic">
+    <section class="chapter4__block chapter4__block--artistic" data-reveal>
         <div class="chapter4__artistic-text">
             <div class="chapter4__label-wrap">
                 <img
@@ -133,6 +133,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             alt=""
             aria-hidden="true"
             class="chapter4__one-day-img"
+            data-magnify
         />
 
         <a
@@ -145,11 +146,12 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </a>
     </section>
 
-    <section class="chapter4__block chapter4__block--comingback">
+    <section class="chapter4__block chapter4__block--comingback" data-reveal>
         <img
             src={humble.src}
             alt="Be humble. Trust. Love what you do."
             class="chapter4__humble-img"
+            data-magnify
         />
 
         <div class="chapter4__comingback-text">
@@ -178,7 +180,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </section>
 
-    <section class="chapter4__block chapter4__block--ahead">
+    <section class="chapter4__block chapter4__block--ahead" data-reveal>
         <img
             src={flowersLeft.src}
             alt=""
@@ -560,3 +562,11 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         }
     }
 </style>
+
+<script>
+    import { initScrollReveal } from "../../scripts/scrollReveal";
+    import { initMagnifier } from "../../scripts/Magnifier";
+
+    initScrollReveal();
+    initMagnifier();
+</script>

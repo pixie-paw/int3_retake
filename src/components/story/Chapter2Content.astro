@@ -43,7 +43,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     <div class="chapter2__header">
         <p class="chapter2__eyebrow">Chapter 2</p>
 
-        <div class="chapter2__title-wrap">
+        <div class="chapter2__title-wrap" data-reveal>
             <img
                 src={titleCh2Url}
                 alt=""
@@ -61,7 +61,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         />
     </div>
 
-    <div class="chapter2__lukas-wrap">
+    <div class="chapter2__lukas-wrap" data-reveal>
         <section class="chapter2__block chapter2__block--lukas">
             <div class="chapter2__label-wrap">
                 <img
@@ -101,7 +101,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             </p>
         </section>
 
-        <div class="chapter2__quote-wrap">
+        <div class="chapter2__quote-wrap" data-reveal>
             <blockquote class="chapter2__quote">
                 <span
                     class="chapter2__quote-mark chapter2__quote-mark--open"
@@ -121,7 +121,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </div>
 
-    <section class="chapter2__block chapter2__block--world">
+    <section class="chapter2__block chapter2__block--world" data-reveal>
         <div class="chapter2__world-info-wrap">
             <InfoReveal
                 id="world-info-panel"
@@ -167,7 +167,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         />
     </section>
 
-    <section class="chapter2__block chapter2__block--academy">
+    <section class="chapter2__block chapter2__block--academy" data-reveal>
         <img
             src={flowersPink.src}
             alt=""
@@ -215,7 +215,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </section>
 
-    <section class="chapter2__block chapter2__block--fashion">
+    <section class="chapter2__block chapter2__block--fashion" data-reveal>
         <div class="chapter2__fashion-label1">
             <img
                 src={tapeRadiatedUrl}
@@ -243,6 +243,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
                 alt=""
                 aria-hidden="true"
                 class="chapter2__ladiladila-img"
+                data-magnify
             />
         </div>
 
@@ -697,3 +698,11 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         }
     }
 </style>
+
+<script>
+    import { initScrollReveal } from "../../scripts/scrollReveal";
+    import { initMagnifier } from "../../scripts/Magnifier";
+
+    initScrollReveal();
+    initMagnifier();
+</script>
