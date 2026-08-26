@@ -38,7 +38,7 @@ const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
     <div class="intro__content">
         <p class="intro__eyebrow">Intro</p>
 
-        <div class="intro__title-wrap">
+        <div class="intro__title-wrap" data-reveal>
             <img
                 src={introTitleUrl}
                 alt="Image that visually represents the title, reading 'Who was she?' in a decorative font and style."
@@ -48,7 +48,7 @@ const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
             <h2 class="visually-hidden">Who was she?</h2>
         </div>
 
-        <div class="intro__text-block">
+        <div class="intro__text-block" data-reveal>
             <div class="intro__body" style={`--paper-bg: url(${paper01.src})`}>
                 <p class="intro__body-text">
                     Marina Yee was one of the members of the fashion group
@@ -126,6 +126,11 @@ const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
             font-size: var(--step--2);
             font-weight: var(--weight-bold);
             color: var(--color-text-main, black);
+        }
+
+        .intro__title-wrap {
+            position: relative;
+            z-index: 2; /* guarantees this paints above .intro__body's z-index:-1, regardless of the stacking context GSAP's transform now creates on this element */
         }
 
         .intro__title-img {
@@ -276,3 +281,9 @@ const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
         }
     </style>
 </section>
+
+<script>
+    import { initScrollReveal } from "../../scripts/scrollReveal";
+
+    initScrollReveal();
+</script>

@@ -41,7 +41,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 
     <p class="chapter1__eyebrow">Chapter 1</p>
 
-    <div class="chapter1__title-wrap">
+    <div class="chapter1__title-wrap" data-reveal>
         <img
             src={titleCh1Url}
             alt="Image that visually represents the title, reading 'Beginnings' in a decorative font and style."
@@ -51,7 +51,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         <h2 class="visually-hidden">Beginnings</h2>
     </div>
 
-    <div class="chapter1__hero">
+    <div class="chapter1__hero" data-reveal>
         <section class="chapter1__block chapter1__block--moving">
             <div class="chapter1__label-wrap">
                 <img
@@ -85,7 +85,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </div>
 
-    <section class="chapter1__block chapter1__block--worlds">
+    <section class="chapter1__block chapter1__block--worlds" data-reveal>
         <img
             src={pinkFlowers.src}
             alt="Decorative pink flowers."
@@ -134,7 +134,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </section>
 
-    <section class="chapter1__block chapter1__block--mother">
+    <section class="chapter1__block chapter1__block--mother" data-reveal>
         <img
             src={diary.src}
             alt="Image that represents a diary, in a collage style, with a dried flower and surrouded by paper and some cloth."
@@ -168,12 +168,13 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </section>
 
-    <div class="chapter1__fashion-row">
+    <div class="chapter1__fashion-row" data-reveal>
         <img
             src={eyeTest.src}
             alt="A collage image composed of parts of Marina's own artwork, including a mannequin bust, a skirt created by her, a woman's head and a door full of posters, textures and a pannel just like the one eye doctors use when they test your eyesight."
             aria-hidden="true"
             class="chapter1__eye-test"
+            data-magnify
         />
 
         <div class="chapter1__fashion-content">
@@ -600,9 +601,10 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 
         .chapter1__eye-test {
             order: initial;
+            width: clamp(20rem, 45vw, 53rem);
             max-width: 53rem;
             margin-inline: 0;
-            flex-shrink: 0;
+            flex-shrink: 1;
             position: relative;
             top: -8rem;
         }
@@ -610,6 +612,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         .chapter1__fashion-content {
             order: initial;
             max-width: 30rem;
+            min-width: 16rem;
             justify-content: center;
         }
 
@@ -619,3 +622,11 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         }
     }
 </style>
+
+<script>
+    import { initScrollReveal } from "../../scripts/scrollReveal";
+    import { initMagnifier } from "../../scripts/Magnifier";
+
+    initScrollReveal();
+    initMagnifier();
+</script>

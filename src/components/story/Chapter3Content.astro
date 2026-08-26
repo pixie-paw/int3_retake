@@ -46,7 +46,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
     <div class="chapter3__header">
         <p class="chapter3__eyebrow">Chapter 3</p>
 
-        <div class="chapter3__title-wrap">
+        <div class="chapter3__title-wrap" data-reveal>
             <img
                 src={titleCh3Url}
                 alt="Image that represents visually the title of chapter 3, Momentum. The image is a stylized representation of the word 'Momentum' in a combination of fonts, looking like a collage."
@@ -57,7 +57,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </div>
     </div>
 
-    <section class="chapter3__block chapter3__block--london">
+    <section class="chapter3__block chapter3__block--london" data-reveal>
         <img
             src={flowersPink.src}
             alt="Pink ornamental flowers that are part of the chapter 3 design."
@@ -122,7 +122,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </a>
     </section>
 
-    <section class="chapter3__block chapter3__block--success">
+    <section class="chapter3__block chapter3__block--success" data-reveal>
         <div class="chapter3__success-taste-top">
             <div class="chapter3__label-wrap">
                 <img
@@ -150,6 +150,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             alt="This collage combines 2 pieces of Marina's work, together with part of one of her fashion shows invitation."
             aria-hidden="true"
             class="chapter3__workshop-img"
+            data-magnify
         />
 
         <p class="chapter3__paragraph chapter3__success-para2">
@@ -188,7 +189,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         />
     </section>
 
-    <section class="chapter3__block chapter3__block--muse">
+    <section class="chapter3__block chapter3__block--muse" data-reveal>
         <div class="chapter3__cherry-top">
             <div class="chapter3__label-wrap">
                 <img
@@ -213,6 +214,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
             src={muse.src}
             alt="A collage with Marina Yee and flowers that reads 'She became his muse'"
             class="chapter3__muse-img"
+            data-magnify
         />
 
         <p class="chapter3__paragraph chapter3__cherry-para2">
@@ -224,7 +226,7 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         </p>
     </section>
 
-    <section class="chapter3__block chapter3__block--closing">
+    <section class="chapter3__block chapter3__block--closing" data-reveal>
         <img
             src={flowersPinkLeft.src}
             alt="Image of decorative pink flowers that are part of the chapter 3 design."
@@ -694,3 +696,11 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         }
     }
 </style>
+
+<script>
+    import { initScrollReveal } from "../../scripts/scrollReveal";
+    import { initMagnifier } from "../../scripts/Magnifier";
+
+    initScrollReveal();
+    initMagnifier();
+</script>

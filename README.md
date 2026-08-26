@@ -7,6 +7,7 @@ An interactive one-pager telling the story of fashion designer Marina Yee, one o
 ## Tech stack
 
 - [Astro](https://astro.build) — static site generation, image optimization pipeline
+- [GSAP](https://gsap.com) + ScrollTrigger — scroll-triggered reveal animations and cursor-following easing
 - Vanilla JavaScript (no framework) — nav interactions, sound toggle, scrollspy, YouTube facade
 - Vanilla CSS — custom design tokens, responsive layouts, no CSS framework
 - npm — dependency management
@@ -66,10 +67,13 @@ src/
     StoryLayout.astro   # wraps Layout with Hero + ChapterNav
   pages/
     index.astro         # the entire one-pager (all chapters stacked as sections)
+  scripts/
+    scrollReveal.js       # shared GSAP ScrollTrigger reveal, imported by each section
+    magnifier.js            # shared magnifying-glass hover effect, imported by each section
   styles/
     tokens.css           # design tokens: colors, fonts, spacing, weights
     reset.css             # CSS reset
-    global.css             # base styles, utility classes
+    global.css             # base styles, utility classes — also holds .magnifier-lens, since it's a JS-created element outside any single component's scope
 public/
   fonts/                    # self-hosted local fonts (.woff2)
   momu_logo.svg              # referenced via import.meta.env.BASE_URL, not a hardcoded path — see note below
@@ -100,7 +104,55 @@ Tested in Chrome and Safari, on both desktop and mobile viewports (including rea
 - Two notable JS-free interaction patterns, both functional with JavaScript disabled:
   - **Multi-fact disclosure pagination** (`InfoReveal.astro`): a hidden radio-button group with `<label for>` arrows and CSS `:checked ~` sibling matching, rather than JS-driven state
   - **Footer email forms**: native `type="email"`/`required` browser validation, with correct/invalid feedback messages toggled via a CSS sibling combinator (`:invalid:not(:placeholder-shown)`) reacting to the input's own validity state — no JS involved in the validation logic itself. JS is used only as a light enhancement, to stop the no-backend form from doing a plain page-reloading GET request on submit.
+- Note on `:has()`: Astro's CSS scoping doesn't reliably inject its scope attribute inside complex pseudo-class selectors like `:has()`, which silently broke an earlier version of the email-validation feedback. Resolved by using plain sibling (`~`) combinators instead, which required keeping the relevant elements as flat, true siblings in the markup rather than nesting them in a wrapper div.
 - Public assets referenced by path (e.g. the MoMu logo in the footer) go through `import.meta.env.BASE_URL` rather than a hardcoded absolute path, since the site deploys under a GitHub Pages subpath (`/int3_retake/`) — a bare `/momu_logo.svg` resolves to the wrong root and 404s.
+
+### GSAP: scroll reveal
+
+Every major section across Intro and all four chapters carries a
+`data-reveal` attribute. A single shared module (`scrollReveal.js`)
+finds all of them and, via GSAP + ScrollTrigger, fades and rises each
+one into place the first time it scrolls into view — once per section,
+not on scroll-back-up.
+
+- **Progressive enhancement is structural here, not incidental**: the
+  "hidden" starting state is only ever set by `gsap.set()`, in JS —
+  never in static CSS. If the script fails to load for any reason,
+  every section is simply visible from the start; there's no way for
+  content to get stuck invisible.
+- **`prefers-reduced-motion` disables the whole system**, rather than
+  offering a reduced version of it: the script exits before hiding
+  anything, so content just appears normally with no motion at all.
+- Interaction/animation distinction, per the brief: scrolling itself is
+  the interaction; the fade + rise is the animation responding to it —
+  deliberately subtle (no bounce, no dramatic entrance) rather than
+  attention-grabbing for its own sake.
+
+### GSAP: magnifying-glass hover
+
+The four dense collage images (`workshop.png`, `muse.png`,
+`one_day.png`, `humble.png`) carry a `data-magnify` attribute. On
+hover, a circular lens follows the cursor and shows a zoomed-in
+detail view of that same image.
+
+- **Desktop-only, gated by `matchMedia`, not just hidden via CSS**:
+  the `mousemove` listeners are never attached at all below 48rem, so
+  there's no dead-weight interaction code running on touch devices.
+- **Reuses the already-loaded image** for the zoomed detail rather
+  than loading a second, higher-resolution asset — the source files
+  already render well above their display size (e.g. `workshop.png`
+  is downloaded at ~1784px wide, displayed at a max of ~642px), so
+  there's real pixel detail to zoom into without any extra network
+  request.
+- **`prefers-reduced-motion` changes *how* it follows, not *whether*
+  it appears**: the lens and the hover interaction itself aren't
+  decorative motion, so they stay. What's disabled is GSAP's
+  `quickTo()` trailing-lag easing — the lens snaps instantly to the
+  cursor instead of smoothly catching up to it.
+- Known limitation: the `matchMedia` desktop/mobile check only runs
+  once on page load. Resizing a browser window across the 48rem
+  breakpoint without reloading won't dynamically enable or disable
+  the magnifier.
 
 ## Accessibility
 
@@ -113,7 +165,7 @@ Tested in Chrome and Safari, on both desktop and mobile viewports (including rea
 ## Known limitations
 
 - A very minor sub-pixel horizontal scroll may be visible on some mobile devices around full-bleed images, caused by browser scrollbar-width calculation differences. Investigated but not fully resolved without introducing other regressions (see git history for `fix/lace-adjustments`).
-- The "Next story" footer link is a placeholder destination, pending a second story existing in the series.
+- The magnifier's desktop/mobile check (`matchMedia`) only runs once on page load — resizing a browser window across the 48rem breakpoint without reloading won't dynamically enable or disable it (see the GSAP section above).
 
 ## Credits
 
