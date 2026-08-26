@@ -1,10 +1,273 @@
 ---
+import arrowSendUrl from "../assets/footer/arrow_send.svg?url";
+import validIconUrl from "../assets/footer/valid_icon.svg?url";
+import invalidIconUrl from "../assets/footer/invalid_icon.svg?url";
+import nextArrowUrl from "../assets/footer/next_arrow.svg?url";
+import { getImage } from "astro:assets";
+import laceLeftSrc from "../assets/footer/lace_left.png";
 
+const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
 ---
 
-<footer>
-    <p>
-        &copy; {new Date().getFullYear()} MoMu Antwerp &mdash; Marina Yee story
-    </p>
-    <!-- links to other one-pagers in the series can go here once they exist -->
+<footer class="footer">
+    <img
+        src={laceLeft.src}
+        alt="Lace decoration"
+        aria-hidden="true"
+        class="footer__lace footer__lace--left"
+    />
+
+    <section class="footer__share">
+        <h2 class="footer__share-heading">
+            Share this story with someone you'd like to visit
+        </h2>
+        <p class="footer__share-text">
+            Give them a little context on Marina's life and work before you
+            experience it together at MoMu.
+        </p>
+
+        <form class="footer__email-form" novalidate>
+            <label for="share-email" class="footer__email-label">
+                Type the person's email in the field below
+            </label>
+
+            <input
+                type="email"
+                id="share-email"
+                name="email"
+                class="footer__email-input"
+                placeholder="Email"
+                required
+            />
+            <button
+                type="submit"
+                class="footer__email-submit"
+                aria-label="Share"
+            >
+                <img src={arrowSendUrl} alt="" aria-hidden="true" />
+            </button>
+
+            <p class="footer__email-feedback footer__email-feedback--valid">
+                <img src={validIconUrl} alt="" aria-hidden="true" />
+                This email address is correct.
+            </p>
+            <p class="footer__email-feedback footer__email-feedback--invalid">
+                <img src={invalidIconUrl} alt="" aria-hidden="true" />
+                This email address is invalid.
+            </p>
+        </form>
+    </section>
+
+    <div class="footer__divider"></div>
+
+    <a
+        href="https://www.momu.be/en/collection-stories/walter-van-beirendonck"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer__next-story"
+        aria-label="Next story: Walter van Beirendonck"
+    >
+        <span aria-hidden="true">
+            Next story<span class="footer__next-story-name"
+                >: Walter van Beirendonck</span
+            >
+        </span>
+        <img
+            src={nextArrowUrl}
+            alt=""
+            aria-hidden="true"
+            class="footer__next-arrow"
+        />
+    </a>
+
+    <div class="footer__divider"></div>
+
+    <!-- MoMu invite / newsletter / social section comes in the next chunk -->
 </footer>
+
+<style>
+    .footer {
+        position: relative;
+        padding: 4rem 1.5rem;
+        border-top: 2.5px solid var(--color-text-secondary, black);
+        background: var(--color-bg, white);
+        margin-top: 5rem;
+    }
+
+    .footer__lace {
+        display: none;
+    }
+
+    .footer__share {
+        text-align: center;
+    }
+
+    .footer__share-heading {
+        font-family: var(--font-family-serif);
+        font-weight: var(--weight-bold);
+        font-size: var(--step-2);
+        color: var(--color-text-main);
+        margin-bottom: 0.75rem;
+    }
+
+    .footer__share-text {
+        font-family: var(--font-family-sans);
+        font-size: var(--step-0);
+        color: var(--color-text-main);
+        max-width: 24rem;
+        margin-inline: auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer__email-form {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 24rem;
+        margin-inline: auto;
+        text-align: left;
+    }
+
+    .footer__email-label {
+        flex-basis: 100%;
+        display: block;
+        font-family: var(--font-family-sans);
+        font-size: var(--step-6);
+        color: var(--color-text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .footer__email-input {
+        flex: 1 1 auto;
+        min-width: 0;
+        border: 2.5px solid var(--color-text-secondary, black);
+        border-right: none;
+        background: none;
+        padding: 0.75rem 1rem;
+        font-family: var(--font-family-sans);
+        font-size: var(--step-0);
+        color: var(--color-text-main);
+    }
+
+    .footer__email-input::placeholder {
+        color: var(--color-text-secondary);
+        opacity: 0.6;
+    }
+
+    .footer__email-input:focus {
+        outline: none;
+    }
+
+    .footer__email-submit {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem;
+        border: 2.5px solid var(--color-text-secondary, black);
+        background: var(--color-text-secondary, black);
+        cursor: pointer;
+    }
+
+    .footer__email-submit img {
+        width: 1.25rem;
+        height: auto;
+    }
+
+    /* --- JS-free validation feedback --- */
+    .footer__email-feedback {
+        flex-basis: 100%;
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-family-sans);
+        font-size: var(--step-6);
+        margin-top: 0.5rem;
+    }
+
+    .footer__email-feedback img {
+        width: 1rem;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    .footer__email-input:invalid:not(:placeholder-shown)
+        ~ .footer__email-feedback--invalid {
+        display: flex;
+    }
+
+    .footer__email-input:valid:not(:placeholder-shown)
+        ~ .footer__email-feedback--valid {
+        display: flex;
+    }
+
+    .footer__divider {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        border-top: 2.5px solid var(--color-text-secondary, black);
+        margin-block: 2.5rem;
+    }
+
+    .footer__next-story {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1rem;
+        font-family: var(--font-family-serif);
+        font-size: var(--step-1);
+        font-weight: var(--weight-bold);
+        text-decoration: underline;
+        color: var(--color-text-main);
+    }
+
+    .footer__next-arrow {
+        width: 3rem;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    .footer__next-story-name {
+        display: none;
+    }
+
+    @media (min-width: 48rem) {
+        .footer__lace {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .footer {
+            padding: 4rem 6rem;
+            margin-top: 10rem;
+        }
+
+        .footer__next-story-name {
+            display: inline;
+        }
+    }
+</style>
+
+<script>
+    // Progressive enhancement only — the form has no backend yet, so this
+    // just stops a raw GET-to-self page reload on submit. Native
+    // type="email" + required validation, and the CSS :has() feedback
+    // above, both work identically with this script absent.
+    function init() {
+        const $forms = document.querySelectorAll<HTMLFormElement>(
+            ".footer__email-form",
+        );
+
+        $forms.forEach(($form) => {
+            $form.addEventListener("submit", (event) => {
+                event.preventDefault();
+            });
+        });
+    }
+
+    init();
+</script>
