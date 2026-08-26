@@ -125,8 +125,13 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         <div class="chapter2__world-info-wrap">
             <InfoReveal
                 id="world-info-panel"
-                title="Some cultural context"
-                text={`By the 1970s, David Bowie turned clothing, makeup and image into an essential part of performance, working with designers such as Kansai Yamamoto to create identities that could change from one appearance to the next. In London, punk pushed things even further. Vivienne Westwood and Malcolm McLaren brought music and clothing together around a scene that lived in shops, clubs and on the street rather than inside traditional couture.`}
+                label="Some cultural context"
+                facts={[
+                    {
+                        title: "Some cultural context",
+                        text: `By the 1970s, David Bowie turned clothing, makeup and image into an essential part of performance, working with designers such as Kansai Yamamoto to create identities that could change from one appearance to the next. In London, punk pushed things even further. Vivienne Westwood and Malcolm McLaren brought music and clothing together around a scene that lived in shops, clubs and on the street rather than inside traditional couture.`,
+                    },
+                ]}
             >
                 <div class="chapter2__label-wrap">
                     <img
@@ -173,8 +178,13 @@ const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
         <div class="chapter2__academy-info-wrap">
             <InfoReveal
                 id="academy-info-panel"
-                title="The Academy between 1963 to 1985"
-                text={`The fashion department from the Academy was founded in 1963 under Mary Prijot and Marthe Van Leemput. The department placed a strong emphasis on drawing, technique, elegance and good taste. Prijot admired Chanel and believed clothes should follow certain rules of propriety — even knees and elbows were considered better left covered. Former students later remembered the teaching as fairly old-school.`}
+                label="The Academy between 1963 to 1985"
+                facts={[
+                    {
+                        title: "The Academy between 1963 to 1985",
+                        text: `The fashion department from the Academy was founded in 1963 under Mary Prijot and Marthe Van Leemput. The department placed a strong emphasis on drawing, technique, elegance and good taste. Prijot admired Chanel and believed clothes should follow certain rules of propriety — even knees and elbows were considered better left covered. Former students later remembered the teaching as fairly old-school.`,
+                    },
+                ]}
             >
                 <div class="chapter2__academy-inner">
                     <div class="chapter2__label-wrap">
