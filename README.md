@@ -110,7 +110,7 @@ Tested in Chrome and Safari, on both desktop and mobile viewports (including rea
 
 ## Credits
 
-- Content and story: MoMu Antwerp / MoMA interview archives / Irina Moldovan
+- Content and story: MoMu Antwerp / MoMu interview archives / Irina Moldovan
 - Interview video: Galerie Sofie Van de Velde
 
 ## License

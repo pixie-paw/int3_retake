@@ -4,10 +4,15 @@ import titleCh3Url from "../../assets/chapter3/title_ch3.svg?url";
 import tapeLondonUrl from "../../assets/chapter3/titleCh03_01.png?url";
 import londonSrc from "../../assets/chapter3/london.png";
 import flowersPinkSrc from "../../assets/chapter3/flowers_pink.png";
+import tapeSuccessUrl from "../../assets/chapter3/titleCh03_02.png?url";
+import workshopSrc from "../../assets/chapter3/workshop.png";
+import tapeNotReadyUrl from "../../assets/chapter3/titleCh03_03.png?url";
+import fittingUrl from "../../assets/chapter3/fitting.svg?url";
 import InfoReveal from "./InfoReveal.astro";
 
 const london = await getImage({ src: londonSrc, format: "webp" });
 const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
+const workshop = await getImage({ src: workshopSrc, format: "webp" });
 ---
 
 <div class="chapter3">
@@ -89,6 +94,72 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
             Learn more about the Antwerp Six at MoMu
         </a>
     </section>
+
+    <section class="chapter3__block chapter3__block--success">
+        <div class="chapter3__success-taste-top">
+            <div class="chapter3__label-wrap">
+                <img
+                    src={tapeSuccessUrl}
+                    alt="This is an image that visually represents the subtitle of this chapter. The image shows letters on some pieces of torn paper."
+                    aria-hidden="true"
+                    class="chapter3__label-img chapter3__label-img--success"
+                />
+                <h3 class="visually-hidden">Taste of success</h3>
+            </div>
+
+            <p class="chapter3__paragraph">
+                Success brought more than attention, and opportunities began
+                arriving quickly: magazines wanted to feature them,
+                manufacturers were interested in producing their collections,
+                and Marina's own career began to grow beyond the small,
+                experimental world she had known before. She worked for Belgian
+                brands, received financial backing and started developing work
+                under her own name.
+            </p>
+        </div>
+
+        <img
+            src={workshop.src}
+            alt="This collage combines 2 pieces of Marina's work, together with part of one of her fashion shows invitation."
+            aria-hidden="true"
+            class="chapter3__workshop-img"
+        />
+
+        <p class="chapter3__paragraph chapter3__success-para2">
+            What had once been driven mostly by instinct and curiosity was now
+            entering a much larger system, one that was built around
+            collections, production, shops and the expectation to keep on
+            growing.
+        </p>
+
+        <div class="chapter3__notready-wrap">
+            <div class="chapter3__label-wrap">
+                <img
+                    src={tapeNotReadyUrl}
+                    alt="This is an image that visually represents the subtitle of this chapter. The image shows letters on some pieces of torn paper."
+                    aria-hidden="true"
+                    class="chapter3__label-img chapter3__label-img--notready"
+                />
+                <h3 class="visually-hidden">She was not ready</h3>
+            </div>
+
+            <p class="chapter3__paragraph">
+                Marina began questioning whether she could picture herself in
+                how her new life was starting to look. She later admitted that
+                she struggled with the expectations that came with it. She
+                missed appointments, kept people waiting and felt increasingly
+                bad about the way she was functioning. Looking back, she simply
+                described herself as: "not ready". More than the business
+                itself, Marina was beginning to question:
+            </p>
+        </div>
+
+        <img
+            src={fittingUrl}
+            alt="Was she even fitting in fashion at all?"
+            class="chapter3__fitting-img"
+        />
+    </section>
 </div>
 
 <style>
@@ -106,6 +177,7 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
         margin-bottom: 0.5rem;
     }
 
+    /* London and Antwerp Six section */
     .chapter3__title-img {
         display: block;
         width: 100%;
@@ -165,6 +237,52 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
         margin-top: -18rem;
     }
 
+    /* Taste of success / She was not ready section */
+    .chapter3__block--success {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-top: 5rem;
+    }
+
+    .chapter3__block--success .chapter3__paragraph {
+        max-width: none; /* overrides any narrower constraint the shared .chapter3__paragraph class might carry (e.g. from the London section) — these paragraphs should run full width to the section's own padding, like normal body text elsewhere */
+    }
+
+    .chapter3__block--success .chapter3__label-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chapter3__label-img--success {
+        max-width: 15rem;
+    }
+
+    .chapter3__label-img--notready {
+        max-width: 15rem;
+    }
+
+    .chapter3__workshop-img {
+        display: block;
+        width: 100%;
+        max-width: 24rem;
+        height: auto;
+        margin-inline: auto;
+    }
+
+    .chapter3__fitting-img {
+        display: block;
+        width: 100%;
+        max-width: 24rem;
+        height: auto;
+        margin-inline: auto;
+    }
+
+    .chapter3__notready-wrap {
+        margin-top: 3rem;
+    }
+
     @media (min-width: 48rem) {
         .chapter3 {
             padding: 6rem;
@@ -177,6 +295,7 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
             margin-bottom: 4rem;
         }
 
+        /* London and Antwerp Six section */
         .chapter3__block--london {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -204,7 +323,7 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
         }
 
         .chapter3__label-img {
-            max-width: 25.1rem; /* 401px, per your real desktop size */
+            max-width: 25.1rem;
             margin-bottom: 1.5rem;
         }
 
@@ -228,6 +347,69 @@ const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
             display: block;
             margin-top: 1rem;
             margin-left: 6rem;
+        }
+
+        /* Taste of success / She was not ready section */
+        .chapter3__block--success {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas:
+                "workshop taste-top"
+                "notready taste-bottom"
+                "notready fitting";
+            column-gap: 3rem;
+            row-gap: 1.5rem;
+            align-items: start;
+        }
+
+        .chapter3__success-taste-top {
+            grid-area: taste-top;
+            margin-top: 16rem;
+        }
+
+        .chapter3__workshop-img {
+            grid-area: workshop;
+        }
+
+        .chapter3__success-para2 {
+            grid-area: taste-bottom;
+            margin-top: -17rem;
+        }
+
+        .chapter3__notready-wrap {
+            grid-area: notready;
+            margin-top: 8rem;
+        }
+
+        .chapter3__fitting-img {
+            grid-area: fitting;
+            margin-top: -8rem;
+        }
+
+        .chapter3__block--success .chapter3__paragraph {
+            max-width: 32rem;
+            margin-inline: auto;
+        }
+
+        .chapter3__block--success .chapter3__label-wrap {
+            align-items: center;
+        }
+
+        .chapter3__label-img--success {
+            max-width: 23rem;
+        }
+
+        .chapter3__label-img--notready {
+            max-width: 23rem;
+        }
+
+        .chapter3__workshop-img {
+            max-width: 40rem;
+        }
+
+        .chapter3__fitting-img {
+            max-width: 40rem;
         }
     }
 </style>
