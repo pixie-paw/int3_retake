@@ -10,15 +10,39 @@ import tapeNotReadyUrl from "../../assets/chapter3/titleCh03_03.png?url";
 import fittingUrl from "../../assets/chapter3/fitting.svg?url";
 import tapeCherryUrl from "../../assets/chapter3/titleCh03_04.png?url";
 import museSrc from "../../assets/chapter3/muse.png";
+import tapeCrossroadsUrl from "../../assets/chapter3/titleCh03_05.png?url";
+import quoteUrl from "../../assets/chapter3/quote.svg?url";
+import flowersPinkLeftSrc from "../../assets/chapter2/flowers_pink.png";
+import laceLeftSrc from "../../assets/chapter3/lace_left.png";
+import laceRightSrc from "../../assets/chapter3/lace_right.png";
 import InfoReveal from "./InfoReveal.astro";
 
 const london = await getImage({ src: londonSrc, format: "webp" });
 const flowersPink = await getImage({ src: flowersPinkSrc, format: "webp" });
 const workshop = await getImage({ src: workshopSrc, format: "webp" });
 const muse = await getImage({ src: museSrc, format: "webp" });
+const flowersPinkLeft = await getImage({
+    src: flowersPinkLeftSrc,
+    format: "webp",
+});
+const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
+const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 ---
 
 <div class="chapter3">
+    <img
+        src={laceLeft.src}
+        alt="Left lace detail that is part of the chapter 3 design."
+        aria-hidden="true"
+        class="chapter3__lace chapter3__lace--left"
+    />
+    <img
+        src={laceRight.src}
+        alt="Right lace detail that is part of the chapter 3 design."
+        aria-hidden="true"
+        class="chapter3__lace chapter3__lace--right"
+    />
+
     <div class="chapter3__header">
         <p class="chapter3__eyebrow">Chapter 3</p>
 
@@ -199,12 +223,58 @@ const muse = await getImage({ src: museSrc, format: "webp" });
             want to find the creative voice that was entirely her own even more.
         </p>
     </section>
+
+    <section class="chapter3__block chapter3__block--closing">
+        <img
+            src={flowersPinkLeft.src}
+            alt="Image of decorative pink flowers that are part of the chapter 3 design."
+            aria-hidden="true"
+            class="chapter3__closing-flowers chapter3__closing-flowers--left"
+        />
+        <img
+            src={flowersPink.src}
+            alt="Image of decorative pink flowers that are part of the chapter 3 design."
+            aria-hidden="true"
+            class="chapter3__closing-flowers chapter3__closing-flowers--right"
+        />
+
+        <img
+            src={quoteUrl}
+            alt={`"I wanted to be my own inspiration, and not inspiration for someone else." — Marina Yee`}
+            class="chapter3__quote-img"
+        />
+
+        <div class="chapter3__crossroads-wrap">
+            <div class="chapter3__label-wrap">
+                <img
+                    src={tapeCrossroadsUrl}
+                    alt="Image that visually represents the subtitle of this chapter. The image shows letters on some pieces of torn paper."
+                    aria-hidden="true"
+                    class="chapter3__label-img chapter3__label-img--crossroads"
+                />
+                <h3 class="visually-hidden">Crossroads</h3>
+            </div>
+
+            <p class="chapter3__paragraph">
+                Marina had reached a crossroads. She could keep moving forward
+                with the momentum that was unfolding around her, or step back
+                and return to something familiar — making, experimenting and
+                following her curiosity without knowing exactly where it would
+                lead her. She did not have the answer yet, but she knew she
+                needed the space to figure it out.
+            </p>
+        </div>
+    </section>
 </div>
 
 <style>
     .chapter3 {
         position: relative;
         padding: 0 1.5rem;
+    }
+
+    .chapter3__lace {
+        display: none;
     }
 
     .chapter3__eyebrow {
@@ -353,9 +423,66 @@ const muse = await getImage({ src: museSrc, format: "webp" });
         margin-right: auto;
     }
 
+    /* Quote / Crossroads */
+    .chapter3__block--closing {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+        position: relative;
+    }
+
+    .chapter3__closing-flowers {
+        display: none;
+    }
+
+    .chapter3__quote-img {
+        display: block;
+        width: 100%;
+        max-width: 23rem;
+        height: auto;
+        padding: 3rem 0;
+    }
+
+    .chapter3__label-img--crossroads {
+        max-width: 15rem;
+    }
+
+    .chapter3__block--closing .chapter3__paragraph {
+        max-width: none;
+    }
+
+    .chapter3__block--closing .chapter3__label-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     @media (min-width: 48rem) {
         .chapter3 {
             padding: 6rem;
+        }
+
+        .chapter3__lace {
+            display: block;
+            position: absolute;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .chapter3__lace--left {
+            left: 0;
+            /* Position TBD — needs to start right where the muse collage
+               ends, not at the top of the chapter. This estimate is a
+               rough guess based on the sections above it (London, Taste
+               of success, muse/cherry) — nudge once you see it rendered. */
+            top: 190rem;
+        }
+
+        .chapter3__lace--right {
+            right: 0;
+            top: 0; /* continues seamlessly from Chapter 2's right lace, which ends exactly where Chapter 3 begins */
         }
 
         .chapter3__title-img {
@@ -490,8 +617,6 @@ const muse = await getImage({ src: museSrc, format: "webp" });
             grid-template-areas:
                 "muse cherry-top"
                 "muse cherry-bottom";
-            /* column-gap: 3rem; */
-            /* row-gap: 1.5rem; */
             align-items: start;
         }
 
@@ -526,6 +651,46 @@ const muse = await getImage({ src: museSrc, format: "webp" });
             max-width: 60rem;
             margin-left: -6rem;
             margin-top: -10rem;
+        }
+
+        /* Quote / Crossroads */
+        .chapter3__closing-flowers {
+            display: block;
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .chapter3__closing-flowers--left {
+            left: 0;
+            top: 18rem;
+            width: 24rem;
+            height: auto;
+        }
+
+        .chapter3__closing-flowers--right {
+            right: 4rem;
+            top: 40rem;
+            width: 15rem;
+            height: auto;
+        }
+
+        .chapter3__quote-img {
+            max-width: 55rem;
+            padding: 0;
+        }
+
+        .chapter3__label-img--crossroads {
+            max-width: 23rem;
+            padding-top: 3rem;
+        }
+
+        .chapter3__block--closing {
+            justify-items: center;
+        }
+
+        .chapter3__block--closing .chapter3__paragraph {
+            max-width: 32rem;
         }
     }
 </style>
