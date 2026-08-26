@@ -9,6 +9,11 @@ import tapeArtisticUrl from "../../assets/chapter4/titleCh04_02.png?url";
 import oneDaySrc from "../../assets/chapter4/one_day.png";
 import humbleSrc from "../../assets/chapter4/humble.png";
 import tapeComingBackUrl from "../../assets/chapter4/titleCh04_03.png?url";
+import tapeAheadUrl from "../../assets/chapter4/titleCh04_04.png?url";
+import flowersLeftSrc from "../../assets/chapter2/flowers_pink.png";
+import flowersRightSrc from "../../assets/chapter3/flowers_pink.png";
+import laceLeftSrc from "../../assets/chapter4/lace_left.png";
+import laceRightSrc from "../../assets/chapter4/lace_right.png";
 
 const brusselsDesktop = await getImage({
     src: brusselsDesktopSrc,
@@ -21,9 +26,26 @@ const brusselsMobile = await getImage({
 const paper02 = await getImage({ src: paper02Src, format: "webp" });
 const oneDay = await getImage({ src: oneDaySrc, format: "webp" });
 const humble = await getImage({ src: humbleSrc, format: "webp" });
+const flowersLeft = await getImage({ src: flowersLeftSrc, format: "webp" });
+const flowersRight = await getImage({ src: flowersRightSrc, format: "webp" });
+const laceLeft = await getImage({ src: laceLeftSrc, format: "webp" });
+const laceRight = await getImage({ src: laceRightSrc, format: "webp" });
 ---
 
 <div class="chapter4">
+    <img
+        src={laceLeft.src}
+        alt="Lace detail on the left side of the page"
+        aria-hidden="true"
+        class="chapter4__lace chapter4__lace--left"
+    />
+    <img
+        src={laceRight.src}
+        alt="Lace detail on the right side of the page"
+        aria-hidden="true"
+        class="chapter4__lace chapter4__lace--right"
+    />
+
     <div class="chapter4__header">
         <p class="chapter4__eyebrow">Chapter 4</p>
 
@@ -155,9 +177,56 @@ const humble = await getImage({ src: humbleSrc, format: "webp" });
             </p>
         </div>
     </section>
+
+    <section class="chapter4__block chapter4__block--ahead">
+        <img
+            src={flowersLeft.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter4__ahead-flowers chapter4__ahead-flowers--left"
+        />
+        <img
+            src={flowersRight.src}
+            alt=""
+            aria-hidden="true"
+            class="chapter4__ahead-flowers chapter4__ahead-flowers--right"
+        />
+
+        <div class="chapter4__label-wrap">
+            <img
+                src={tapeAheadUrl}
+                alt=""
+                aria-hidden="true"
+                class="chapter4__label-img chapter4__label-img--ahead"
+            />
+            <h3 class="visually-hidden">
+                She was ahead of her time and the world had finally caught up
+                with her
+            </h3>
+        </div>
+
+        <p class="chapter4__paragraph">
+            The world around Marina had changed too. Reworking, second-hand
+            materials, smaller-scale production and slower ways of creating
+            found a place within fashion. Ideas that had once made Marina
+            difficult to fit into this system were now becoming in demand.
+        </p>
+
+        <p class="chapter4__paragraph">
+            In a way, history seemed to be repeating itself: just as Marina's
+            generation had once challenged what fashion was supposed to be, a
+            new generation was questioning it again. Only this time, the space
+            they were opening up looked remarkably close to the one Marina had
+            long ago created for herself.
+        </p>
+    </section>
 </div>
 
 <style>
+    .chapter4__lace {
+        display: none;
+    }
+
     .chapter4 {
         position: relative;
         padding: 6rem 1.5rem;
@@ -233,7 +302,7 @@ const humble = await getImage({ src: humbleSrc, format: "webp" });
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        margin-top: 3rem; /* spacing after the Belgium section — tune */
+        margin-top: 3rem;
     }
 
     .chapter4__artistic-text {
@@ -300,9 +369,45 @@ const humble = await getImage({ src: humbleSrc, format: "webp" });
         max-width: 20rem;
     }
 
+    /* She was ahead of her time */
+    .chapter4__block--ahead {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 1.5rem;
+        position: relative;
+        margin-top: 5rem;
+    }
+
+    .chapter4__ahead-flowers {
+        display: none;
+    }
+
+    .chapter4__label-img--ahead {
+        max-width: 22rem;
+    }
+
     @media (min-width: 48rem) {
         .chapter4 {
             padding: 2rem 6rem;
+        }
+
+        .chapter4__lace {
+            display: block;
+            position: absolute;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .chapter4__lace--left {
+            left: 0;
+            top: 0;
+        }
+
+        .chapter4__lace--right {
+            right: 0;
+            top: 0;
         }
 
         .chapter4__title-img {
@@ -387,11 +492,7 @@ const humble = await getImage({ src: humbleSrc, format: "webp" });
             max-width: 32rem;
         }
 
-        /* Coming back to the industry on her own terms — humble.png on
-           the left, heading+paragraph on the right. Same mirrored
-           image-left/text-right pattern as Ch3's "She became his muse"
-           section, but without a paragraph split since there's only one
-           paragraph here (no mobile interruption to account for). */
+        /* Coming back to the industry on her own terms */
         .chapter4__block--comingback {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -420,6 +521,42 @@ const humble = await getImage({ src: humbleSrc, format: "webp" });
         .chapter4__label-img--comingback {
             max-width: 31rem;
             padding-bottom: 2.5rem;
+        }
+
+        /* She was ahead of her time */
+        .chapter4__block--ahead {
+            justify-items: center;
+            margin-top: 5rem; /* tune */
+        }
+
+        .chapter4__ahead-flowers {
+            display: block;
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .chapter4__ahead-flowers--left {
+            left: -2rem;
+            top: 0;
+            width: 24rem;
+            height: auto;
+        }
+
+        .chapter4__ahead-flowers--right {
+            right: 4rem;
+            top: 2rem;
+            width: 15rem;
+            height: auto;
+        }
+
+        .chapter4__label-img--ahead {
+            max-width: 35rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .chapter4__block--ahead .chapter4__paragraph {
+            max-width: 32rem;
         }
     }
 </style>
